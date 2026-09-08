@@ -73,7 +73,7 @@
         }
 
 
-        /* ---------------- CLOCK ---------------- */
+        /* ---------------- CLOCK CONTAINER ---------------- */
 
         #clockContainer {
             position: fixed;
@@ -82,7 +82,6 @@
             z-index: 2;
 
             display: flex;
-            flex-direction: column;
 
             align-items: center;
             justify-content: center;
@@ -132,7 +131,7 @@
         }
 
 
-        /* ---------------- COLON ---------------- */
+        /* ---------------- ROUND COLON ---------------- */
 
         #colon {
             display: flex;
@@ -200,7 +199,14 @@
         /* ---------------- DATE ---------------- */
 
         #dateDisplay {
-            margin-top: 2vw;
+            position: fixed;
+
+            left: 50%;
+            bottom: 4vh;
+
+            transform: translateX(-50%);
+
+            z-index: 3;
 
             padding: 0.7vw 1.5vw;
 
@@ -211,18 +217,24 @@
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
 
+            color: white;
+
             font-family:
                 "Aref Ruqaa Ink",
-                sans-serif;
+                serif;
 
             font-size: 2.2vw;
 
             font-weight: 400;
 
-            letter-spacing: 0.04em;
+            letter-spacing: 0;
+
+            white-space: nowrap;
 
             text-shadow:
                 0 2px 8px rgba(0, 0, 0, 0.35);
+
+            pointer-events: none;
         }
 
 
@@ -380,10 +392,13 @@
 
         </div>
 
-
-        <div id="dateDisplay"></div>
-
     </div>
+
+
+
+    <!-- DATE -->
+
+    <div id="dateDisplay"></div>
 
 
 
@@ -513,11 +528,7 @@
                 getOrdinalSuffix(dayNumber);
 
 
-            const dateDisplay =
-                document.getElementById("dateDisplay");
-
-
-            dateDisplay.innerHTML =
+            document.getElementById("dateDisplay").innerHTML =
                 weekdayText +
                 " " +
                 dayNumber +
