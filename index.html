@@ -109,6 +109,109 @@
 
 
         /* =========================
+           GRID GUIDES
+        ========================= */
+
+        #gridGuides {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 3;
+
+            display: none;
+
+            pointer-events: none;
+        }
+
+
+        body.design-mode
+        #gridGuides {
+
+            display: block;
+        }
+
+
+        .guide {
+
+            position: absolute;
+
+            background:
+                rgba(255, 255, 255, 0.22);
+
+            pointer-events: none;
+        }
+
+
+        .guide.vertical {
+
+            top: 0;
+
+            width: 1px;
+
+            height: 100%;
+        }
+
+
+        .guide.horizontal {
+
+            left: 0;
+
+            width: 100%;
+
+            height: 1px;
+        }
+
+
+        .guide.quarter-x {
+
+            left: 25%;
+        }
+
+
+        .guide.center-x {
+
+            left: 50%;
+
+            width: 2px;
+
+            background:
+                rgba(255, 255, 255, 0.52);
+        }
+
+
+        .guide.three-quarter-x {
+
+            left: 75%;
+        }
+
+
+        .guide.quarter-y {
+
+            top: 25%;
+        }
+
+
+        .guide.center-y {
+
+            top: 50%;
+
+            height: 2px;
+
+            background:
+                rgba(255, 255, 255, 0.52);
+        }
+
+
+        .guide.three-quarter-y {
+
+            top: 75%;
+        }
+
+
+
+        /* =========================
            CLOCK
         ========================= */
 
@@ -658,9 +761,6 @@
         }
 
 
-
-        /* YOUTUBE RED BUTTON */
-
         #loadButton {
 
             background:
@@ -868,6 +968,27 @@
 
 
 
+    <!-- GRID GUIDES -->
+
+    <div id="gridGuides">
+
+        <div class="guide vertical quarter-x"></div>
+
+        <div class="guide vertical center-x"></div>
+
+        <div class="guide vertical three-quarter-x"></div>
+
+
+        <div class="guide horizontal quarter-y"></div>
+
+        <div class="guide horizontal center-y"></div>
+
+        <div class="guide horizontal three-quarter-y"></div>
+
+    </div>
+
+
+
     <!-- CLOCK -->
 
     <div id="clockWidget">
@@ -935,12 +1056,12 @@
 
 
 
-    <!-- DESIGN MODE BANNER -->
+    <!-- DESIGN BANNER -->
 
     <div id="designBanner">
 
         <span>
-            Drag to move · corner dot to resize
+            Drag · snap to guides · resize from corner
         </span>
 
 
@@ -955,7 +1076,7 @@
 
 
 
-    <!-- SETTINGS BUTTON -->
+    <!-- SETTINGS -->
 
     <button
         id="settingsButton"
@@ -965,8 +1086,6 @@
     </button>
 
 
-
-    <!-- SETTINGS PANEL -->
 
     <div id="settingsPanel">
 
@@ -1147,7 +1266,6 @@
             </button>
 
         </div>
-
 
     </div>
 
@@ -1670,6 +1788,73 @@
 
 
         /* =========================
+           SNAPPING
+        ========================= */
+
+
+        const SNAP_DISTANCE =
+            14;
+
+
+
+        function snapValue(
+            value,
+            targets
+        ) {
+
+            let closest =
+                value;
+
+
+            let closestDistance =
+                SNAP_DISTANCE + 1;
+
+
+            targets.forEach(
+                function (target) {
+
+                    const distance =
+                        Math.abs(
+                            value -
+                            target
+                        );
+
+
+                    if (
+                        distance <
+                        closestDistance
+                    ) {
+
+                        closestDistance =
+                            distance;
+
+
+                        closest =
+                            target;
+
+                    }
+
+                }
+            );
+
+
+            if (
+                closestDistance <=
+                SNAP_DISTANCE
+            ) {
+
+                return closest;
+
+            }
+
+
+            return value;
+
+        }
+
+
+
+        /* =========================
            DRAGGING
         ========================= */
 
@@ -1778,18 +1963,6 @@
                     dragState.element;
 
 
-                /*
-                    IMPORTANT:
-
-                    getBoundingClientRect()
-                    returns the ACTUAL VISUAL SIZE
-                    after scaling.
-
-                    So when the date is tiny,
-                    its boundary is tiny too.
-                */
-
-
                 const rect =
                     element
                         .getBoundingClientRect();
@@ -1813,6 +1986,12 @@
                     dragState.offsetY;
 
 
+
+                /* -------------------------
+                   SCREEN BOUNDARIES
+                ------------------------- */
+
+
                 centreX =
                     Math.max(
                         halfWidth,
@@ -1833,6 +2012,56 @@
                             centreY
                         )
                     );
+
+
+
+                /* -------------------------
+                   GRID SNAP TARGETS
+                ------------------------- */
+
+
+                const xTargets = [
+
+                    window.innerWidth *
+                    0.25,
+
+                    window.innerWidth *
+                    0.50,
+
+                    window.innerWidth *
+                    0.75
+
+                ];
+
+
+                const yTargets = [
+
+                    window.innerHeight *
+                    0.25,
+
+                    window.innerHeight *
+                    0.50,
+
+                    window.innerHeight *
+                    0.75
+
+                ];
+
+
+
+                centreX =
+                    snapValue(
+                        centreX,
+                        xTargets
+                    );
+
+
+                centreY =
+                    snapValue(
+                        centreY,
+                        yTargets
+                    );
+
 
 
                 element.style.left =
@@ -2351,7 +2580,7 @@
 
 
         /* =========================
-           SAVE EVERYTHING
+           SAVE SETTINGS
         ========================= */
 
 
