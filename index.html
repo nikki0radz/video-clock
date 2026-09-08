@@ -59,8 +59,6 @@
         }
 
 
-        /* Slight darkening over video */
-
         #shade {
             position: fixed;
             inset: 0;
@@ -142,6 +140,38 @@
         }
 
 
+        .seconds {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            width: 4.5vw;
+            height: 4.5vw;
+
+            border-radius: 1vw;
+
+            background: rgba(0, 0, 0, 0.20);
+
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+
+            font-size: 2.6vw;
+
+            font-weight: 200;
+
+            line-height: 1;
+
+            align-self: flex-end;
+
+            margin-left: 0.2vw;
+            margin-bottom: 1vw;
+
+            text-shadow:
+                0 2px 8px rgba(0, 0, 0, 0.35);
+        }
+
+
         #date {
             margin-top: 2vw;
 
@@ -156,9 +186,12 @@
 
             font-size: 2.2vw;
 
-            font-weight: 200;
+            font-weight: 100;
 
             letter-spacing: 0.04em;
+
+            text-shadow:
+                0 2px 8px rgba(0, 0, 0, 0.35);
         }
 
 
@@ -293,6 +326,8 @@
 
             <div class="digit" id="m2">0</div>
 
+            <div class="seconds" id="seconds">00</div>
+
         </div>
 
 
@@ -329,6 +364,32 @@
 
     <script>
 
+        /* ---------- DATE ORDINAL ---------- */
+
+        function getOrdinal(day) {
+
+            if (day > 3 && day < 21) {
+                return "th";
+            }
+
+            switch (day % 10) {
+
+                case 1:
+                    return "st";
+
+                case 2:
+                    return "nd";
+
+                case 3:
+                    return "rd";
+
+                default:
+                    return "th";
+            }
+        }
+
+
+
         /* ---------- CLOCK ---------- */
 
         function updateClock() {
@@ -342,6 +403,10 @@
 
             const minutes =
                 String(now.getMinutes()).padStart(2, "0");
+
+
+            const seconds =
+                String(now.getSeconds()).padStart(2, "0");
 
 
             document.getElementById("h1").textContent =
@@ -360,15 +425,39 @@
                 minutes[1];
 
 
-            const date =
+            document.getElementById("seconds").textContent =
+                seconds;
+
+
+            const weekday =
                 now.toLocaleDateString(
                     "en-GB",
                     {
-                        weekday: "long",
-                        day: "numeric",
+                        weekday: "long"
+                    }
+                );
+
+
+            const month =
+                now.toLocaleDateString(
+                    "en-GB",
+                    {
                         month: "long"
                     }
                 );
+
+
+            const day =
+                now.getDate();
+
+
+            const date =
+                weekday +
+                " " +
+                day +
+                getOrdinal(day) +
+                " " +
+                month;
 
 
             document.getElementById("date").textContent =
@@ -389,7 +478,8 @@
 
             try {
 
-                const parsed = new URL(url);
+                const parsed =
+                    new URL(url);
 
 
                 if (
