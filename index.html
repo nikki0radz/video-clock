@@ -184,23 +184,34 @@
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
 
+            font-family:
+                "Avenir Next",
+                "Helvetica Neue",
+                Arial,
+                sans-serif;
+
             font-size: 2.2vw;
 
             font-weight: 100;
 
-            letter-spacing: 0.04em;
+            letter-spacing: 0.03em;
 
             text-shadow:
                 0 2px 8px rgba(0, 0, 0, 0.35);
         }
 
-        
-         #date sup {
-            font-size: 0.5em;
-            vertical-align: super;
+
+        #date sup {
+            font-size: 0.48em;
+
+            position: relative;
+            top: -0.45em;
+
+            margin-left: 0.04em;
+
             line-height: 0;
-            margin-left: 0.05em;
         }
+
 
         /* ---------------- SETTINGS ---------------- */
 
@@ -458,20 +469,18 @@
                 now.getDate();
 
 
-            const suffix = getOrdinal(day);
+            const suffix =
+                getOrdinal(day);
 
-                document.getElementById("date").innerHTML =
+
+            document.getElementById("date").innerHTML =
                 weekday +
-                   " " +
+                " " +
                 day +
                 "<sup>" +
                 suffix +
                 "</sup> " +
                 month;
-
-
-            document.getElementById("date").textContent =
-                date;
 
         }
 
