@@ -140,6 +140,8 @@
         }
 
 
+        /* ---------------- SECONDS ---------------- */
+
         .seconds {
             display: flex;
 
@@ -172,7 +174,9 @@
         }
 
 
-        #date {
+        /* ---------------- DATE ---------------- */
+
+        #dateDisplay {
             margin-top: 2vw;
 
             padding: 0.7vw 1.5vw;
@@ -187,7 +191,7 @@
             font-family:
                 "Avenir Next",
                 "Helvetica Neue",
-                Arial,
+                Helvetica,
                 sans-serif;
 
             font-size: 2.2vw;
@@ -201,15 +205,16 @@
         }
 
 
-        #date sup {
-            font-size: 0.48em;
-
+        #dateDisplay sup {
             position: relative;
+
             top: -0.45em;
 
-            margin-left: 0.04em;
+            font-size: 0.48em;
 
             line-height: 0;
+
+            margin-left: 0.04em;
         }
 
 
@@ -349,7 +354,7 @@
         </div>
 
 
-        <div id="date"></div>
+        <div id="dateDisplay"></div>
 
     </div>
 
@@ -382,15 +387,18 @@
 
     <script>
 
-        /* ---------- DATE ORDINAL ---------- */
+        /* ---------- ORDINAL ---------- */
 
-        function getOrdinal(day) {
+        function getOrdinalSuffix(dayNumber) {
 
-            if (day > 3 && day < 21) {
+            if (
+                dayNumber >= 11 &&
+                dayNumber <= 13
+            ) {
                 return "th";
             }
 
-            switch (day % 10) {
+            switch (dayNumber % 10) {
 
                 case 1:
                     return "st";
@@ -447,7 +455,10 @@
                 seconds;
 
 
-            const weekday =
+
+            /* ---------- DATE ---------- */
+
+            const weekdayText =
                 now.toLocaleDateString(
                     "en-GB",
                     {
@@ -456,7 +467,7 @@
                 );
 
 
-            const month =
+            const monthText =
                 now.toLocaleDateString(
                     "en-GB",
                     {
@@ -465,22 +476,26 @@
                 );
 
 
-            const day =
+            const dayNumber =
                 now.getDate();
 
 
-            const suffix =
-                getOrdinal(day);
+            const ordinalSuffix =
+                getOrdinalSuffix(dayNumber);
 
 
-            document.getElementById("date").innerHTML =
-                weekday +
+            const dateDisplay =
+                document.getElementById("dateDisplay");
+
+
+            dateDisplay.innerHTML =
+                weekdayText +
                 " " +
-                day +
+                dayNumber +
                 "<sup>" +
-                suffix +
+                ordinalSuffix +
                 "</sup> " +
-                month;
+                monthText;
 
         }
 
