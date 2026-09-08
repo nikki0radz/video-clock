@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -14,36 +15,61 @@
 
     <title>Video Clock</title>
 
+
     <style>
 
-        @import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&family=Cutive+Mono&family=Great+Vibes&display=swap');
+
 
         * {
             box-sizing: border-box;
         }
 
+
+        :root {
+
+            --text-color: #ffffff;
+
+            --tile-color:
+                rgba(0, 0, 0, 0.20);
+
+            --clock-font:
+                "Helvetica Neue",
+                Helvetica,
+                Arial,
+                sans-serif;
+
+            --date-font:
+                "Cutive Mono",
+                monospace;
+        }
+
+
         html,
         body {
+
             margin: 0;
+
             width: 100%;
             height: 100%;
+
             overflow: hidden;
 
             background: black;
 
             font-family:
-                "Helvetica Neue",
-                Helvetica,
                 Arial,
                 sans-serif;
         }
 
 
-        /* ==============================
+
+        /* =========================
            VIDEO
-        ============================== */
+        ========================= */
 
         #videoFrame {
+
             position: fixed;
 
             top: 50%;
@@ -55,7 +81,8 @@
             min-width: 100vw;
             min-height: 56.25vw;
 
-            transform: translate(-50%, -50%);
+            transform:
+                translate(-50%, -50%);
 
             border: 0;
 
@@ -66,11 +93,13 @@
 
 
         #shade {
+
             position: fixed;
 
             inset: 0;
 
-            background: rgba(0, 0, 0, 0.08);
+            background:
+                rgba(0, 0, 0, 0.08);
 
             z-index: 1;
 
@@ -78,11 +107,13 @@
         }
 
 
-        /* ==============================
-           CLOCK WIDGET
-        ============================== */
+
+        /* =========================
+           CLOCK
+        ========================= */
 
         #clockWidget {
+
             position: fixed;
 
             left: 50%;
@@ -92,11 +123,13 @@
                 translate(-50%, -50%)
                 scale(var(--clock-scale, 1));
 
-            transform-origin: center center;
+            transform-origin:
+                center center;
 
-            z-index: 2;
+            z-index: 5;
 
-            color: white;
+            color:
+                var(--text-color);
 
             pointer-events: none;
 
@@ -105,16 +138,21 @@
 
 
         #clock {
+
             display: flex;
 
             align-items: center;
             justify-content: center;
 
             gap: 1.2vw;
+
+            font-family:
+                var(--clock-font);
         }
 
 
         .digit {
+
             display: flex;
 
             align-items: center;
@@ -125,10 +163,14 @@
 
             border-radius: 2vw;
 
-            background: rgba(0, 0, 0, 0.20);
+            background:
+                var(--tile-color);
 
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter:
+                blur(5px);
+
+            -webkit-backdrop-filter:
+                blur(5px);
 
             font-size: 10vw;
 
@@ -137,15 +179,18 @@
             line-height: 1;
 
             text-shadow:
-                0 2px 12px rgba(0, 0, 0, 0.35);
+                0 2px 12px
+                rgba(0, 0, 0, 0.35);
         }
 
 
-        /* ==============================
+
+        /* =========================
            COLON
-        ============================== */
+        ========================= */
 
         #colon {
+
             display: flex;
 
             flex-direction: column;
@@ -155,11 +200,13 @@
 
             gap: 1.3vw;
 
-            margin: 0 0.4vw;
+            margin:
+                0 0.4vw;
         }
 
 
         #colon span {
+
             display: block;
 
             width: 0.9vw;
@@ -167,18 +214,22 @@
 
             border-radius: 50%;
 
-            background: white;
+            background:
+                var(--text-color);
 
             box-shadow:
-                0 2px 12px rgba(0, 0, 0, 0.6);
+                0 2px 12px
+                rgba(0, 0, 0, 0.5);
         }
 
 
-        /* ==============================
+
+        /* =========================
            SECONDS
-        ============================== */
+        ========================= */
 
         .seconds {
+
             display: flex;
 
             align-items: center;
@@ -189,10 +240,14 @@
 
             border-radius: 1vw;
 
-            background: rgba(0, 0, 0, 0.20);
+            background:
+                var(--tile-color);
 
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter:
+                blur(5px);
+
+            -webkit-backdrop-filter:
+                blur(5px);
 
             font-size: 2.6vw;
 
@@ -206,29 +261,34 @@
             margin-bottom: 1vw;
 
             text-shadow:
-                0 2px 8px rgba(0, 0, 0, 0.35);
+                0 2px 8px
+                rgba(0, 0, 0, 0.35);
         }
 
 
-        /* ==============================
+
+        /* =========================
            DATE
-        ============================== */
+        ========================= */
 
         #dateWidget {
+
             position: fixed;
 
             left: 50%;
-            bottom: 20px;
+            bottom: 18px;
 
             transform:
                 translateX(-50%)
                 scale(var(--date-scale, 1));
 
-            transform-origin: center center;
+            transform-origin:
+                center center;
 
-            z-index: 3;
+            z-index: 6;
 
-            color: white;
+            color:
+                var(--text-color);
 
             pointer-events: none;
 
@@ -237,276 +297,555 @@
 
 
         #dateDisplay {
-            padding: 0.7vw 1.5vw;
 
-            border-radius: 1vw;
+            padding:
+                0.7vw 1.5vw;
 
-            background: rgba(0, 0, 0, 0.20);
+            border-radius:
+                1vw;
 
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
+            background:
+                var(--tile-color);
+
+            backdrop-filter:
+                blur(5px);
+
+            -webkit-backdrop-filter:
+                blur(5px);
 
             font-family:
-                "Cutive Mono",
-                monospace;
+                var(--date-font);
 
-            font-size: 2.2vw;
+            font-size:
+                2.2vw;
 
-            font-weight: 400;
+            font-weight:
+                400;
 
-            letter-spacing: 0;
+            letter-spacing:
+                0;
 
-            white-space: nowrap;
+            white-space:
+                nowrap;
 
             text-shadow:
-                0 2px 8px rgba(0, 0, 0, 0.35);
+                0 2px 8px
+                rgba(0, 0, 0, 0.35);
         }
 
 
         #dateDisplay sup {
-            position: relative;
 
-            top: -0.45em;
+            position:
+                relative;
 
-            font-size: 0.48em;
+            top:
+                -0.45em;
 
-            line-height: 0;
+            font-size:
+                0.48em;
 
-            margin-left: 0.04em;
+            line-height:
+                0;
+
+            margin-left:
+                0.04em;
         }
 
 
-        /* ==============================
-           DESIGN MODE
-        ============================== */
 
-        body.design-mode #clockWidget,
-        body.design-mode #dateWidget {
-            pointer-events: auto;
+        /* =========================
+           DESIGN MODE
+        ========================= */
+
+        body.design-mode
+        #clockWidget,
+
+        body.design-mode
+        #dateWidget {
+
+            pointer-events:
+                auto;
 
             outline:
                 2px dashed
-                rgba(255, 255, 255, 0.8);
+                rgba(255, 255, 255, 0.85);
 
-            outline-offset: 8px;
+            outline-offset:
+                8px;
 
-            cursor: move;
+            cursor:
+                move;
         }
 
 
         .resizeHandle {
-            position: absolute;
 
-            display: none;
+            position:
+                absolute;
 
-            width: 26px;
-            height: 26px;
+            right:
+                -20px;
 
-            right: -20px;
-            bottom: -20px;
+            bottom:
+                -20px;
 
-            border-radius: 50%;
+            width:
+                28px;
 
-            background: white;
+            height:
+                28px;
+
+            display:
+                none;
+
+            border-radius:
+                50%;
+
+            background:
+                white;
 
             border:
                 4px solid
-                rgba(0, 0, 0, 0.65);
+                rgba(0, 0, 0, 0.7);
 
-            cursor: nwse-resize;
+            cursor:
+                nwse-resize;
 
-            touch-action: none;
+            touch-action:
+                none;
 
-            z-index: 20;
+            z-index:
+                20;
         }
 
 
-        body.design-mode .resizeHandle {
-            display: block;
+        body.design-mode
+        .resizeHandle {
+
+            display:
+                block;
         }
 
+
+
+        /* =========================
+           DESIGN BANNER
+        ========================= */
 
         #designBanner {
-            position: fixed;
 
-            top: 18px;
-            left: 50%;
+            position:
+                fixed;
 
-            transform: translateX(-50%);
+            top:
+                18px;
 
-            z-index: 10;
+            left:
+                50%;
 
-            display: none;
+            transform:
+                translateX(-50%);
 
-            align-items: center;
+            z-index:
+                30;
 
-            gap: 12px;
+            display:
+                none;
 
-            padding: 8px 10px 8px 16px;
+            align-items:
+                center;
 
-            border-radius: 14px;
+            gap:
+                12px;
 
-            background: rgba(0, 0, 0, 0.75);
+            padding:
+                8px 10px
+                8px 16px;
 
-            color: white;
+            border-radius:
+                14px;
 
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background:
+                rgba(0, 0, 0, 0.78);
+
+            color:
+                white;
+
+            backdrop-filter:
+                blur(12px);
+
+            -webkit-backdrop-filter:
+                blur(12px);
         }
 
 
-        body.design-mode #designBanner {
-            display: flex;
-        }
+        body.design-mode
+        #designBanner {
 
-
-        #designBannerText {
-            font-size: 14px;
+            display:
+                flex;
         }
 
 
         #doneDesignButton {
-            padding: 9px 16px;
 
-            border: 0;
+            padding:
+                9px 16px;
 
-            border-radius: 9px;
+            border:
+                0;
 
-            background: white;
+            border-radius:
+                9px;
 
-            color: black;
+            background:
+                white;
 
-            font-size: 14px;
+            color:
+                black;
 
-            cursor: pointer;
+            cursor:
+                pointer;
         }
 
 
-        /* ==============================
+
+        /* =========================
            SETTINGS
-        ============================== */
+        ========================= */
 
         #settingsButton {
-            position: fixed;
 
-            top: 18px;
-            right: 18px;
+            position:
+                fixed;
 
-            z-index: 20;
+            top:
+                18px;
 
-            width: 48px;
-            height: 48px;
+            right:
+                18px;
 
-            border: 0;
+            z-index:
+                40;
 
-            border-radius: 50%;
+            width:
+                48px;
 
-            background: rgba(0, 0, 0, 0.35);
+            height:
+                48px;
 
-            color: white;
+            border:
+                0;
 
-            font-size: 21px;
+            border-radius:
+                50%;
 
-            cursor: pointer;
+            background:
+                rgba(0, 0, 0, 0.45);
 
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            color:
+                white;
+
+            font-size:
+                21px;
+
+            cursor:
+                pointer;
+
+            backdrop-filter:
+                blur(10px);
+
+            -webkit-backdrop-filter:
+                blur(10px);
         }
 
 
         #settingsPanel {
-            position: fixed;
 
-            top: 76px;
-            right: 18px;
+            position:
+                fixed;
 
-            z-index: 20;
+            top:
+                76px;
+
+            right:
+                18px;
+
+            z-index:
+                40;
 
             width:
                 min(
-                    360px,
+                    380px,
                     calc(100vw - 36px)
                 );
 
-            padding: 16px;
+            max-height:
+                calc(100vh - 100px);
 
-            display: none;
+            overflow-y:
+                auto;
 
-            gap: 10px;
+            padding:
+                16px;
 
-            background: rgba(0, 0, 0, 0.78);
+            display:
+                none;
 
-            color: white;
+            gap:
+                11px;
 
-            border-radius: 16px;
+            border-radius:
+                16px;
 
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
+            background:
+                rgba(0, 0, 0, 0.84);
+
+            color:
+                white;
+
+            backdrop-filter:
+                blur(14px);
+
+            -webkit-backdrop-filter:
+                blur(14px);
         }
 
 
         #settingsPanel.show {
-            display: grid;
+
+            display:
+                grid;
         }
 
 
         #youtubeInput {
-            width: 100%;
 
-            padding: 12px;
+            width:
+                100%;
 
-            border: 0;
+            padding:
+                12px;
 
-            border-radius: 10px;
+            border:
+                0;
 
-            font-size: 16px;
+            border-radius:
+                10px;
+
+            font-size:
+                16px;
         }
 
 
         .settingsAction {
-            padding: 12px;
 
-            border: 0;
+            padding:
+                12px;
 
-            border-radius: 10px;
+            border:
+                0;
 
-            font-size: 16px;
+            border-radius:
+                10px;
 
-            cursor: pointer;
+            font-size:
+                15px;
+
+            cursor:
+                pointer;
+        }
+
+
+
+        /* YOUTUBE RED BUTTON */
+
+        #loadButton {
+
+            background:
+                #ff0000;
+
+            color:
+                white;
+
+            font-weight:
+                600;
+        }
+
+
+        #loadButton:hover {
+
+            background:
+                #cc0000;
         }
 
 
         #designButton {
-            margin-top: 5px;
+
+            background:
+                white;
+
+            color:
+                black;
         }
 
 
         #resetLayoutButton {
+
             background:
                 rgba(255, 255, 255, 0.12);
 
-            color: white;
-        }
-
-
-        #hint {
-            font-size: 13px;
-
-            opacity: 0.7;
+            color:
+                white;
         }
 
 
         .settingsDivider {
-            height: 1px;
 
-            margin: 5px 0;
+            height:
+                1px;
 
             background:
                 rgba(255, 255, 255, 0.15);
+
+            margin:
+                4px 0;
+        }
+
+
+        .settingsTitle {
+
+            font-size:
+                12px;
+
+            font-weight:
+                bold;
+
+            opacity:
+                0.7;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                0.08em;
+        }
+
+
+        .choiceRow {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap:
+                7px;
+        }
+
+
+        .fontGrid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap:
+                7px;
+        }
+
+
+        .choiceButton {
+
+            min-height:
+                44px;
+
+            padding:
+                8px;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.18);
+
+            border-radius:
+                9px;
+
+            background:
+                rgba(255, 255, 255, 0.10);
+
+            color:
+                white;
+
+            cursor:
+                pointer;
+        }
+
+
+        .choiceButton.selected {
+
+            border-color:
+                white;
+
+            background:
+                rgba(255, 255, 255, 0.27);
+        }
+
+
+        .font-cutive {
+
+            font-family:
+                "Cutive Mono",
+                monospace;
+        }
+
+
+        .font-arial {
+
+            font-family:
+                Arial,
+                sans-serif;
+        }
+
+
+        .font-handwriting {
+
+            font-family:
+                "Caveat",
+                cursive;
+
+            font-size:
+                18px;
+        }
+
+
+        .font-calligraphy {
+
+            font-family:
+                "Great Vibes",
+                cursive;
+
+            font-size:
+                19px;
+        }
+
+
+        #hint {
+
+            font-size:
+                12px;
+
+            opacity:
+                0.65;
         }
 
     </style>
+
 </head>
+
 
 
 <body>
@@ -515,11 +854,14 @@
     <!-- VIDEO -->
 
     <iframe
+
         id="videoFrame"
+
         src="https://www.youtube.com/embed/5qap5aO4i9A?autoplay=1&mute=1&controls=0&loop=1&playlist=5qap5aO4i9A&modestbranding=1&rel=0"
+
         allow="autoplay; encrypted-media"
-        allowfullscreen>
-    </iframe>
+
+    ></iframe>
 
 
     <div id="shade"></div>
@@ -532,23 +874,36 @@
 
         <div id="clock">
 
-            <div class="digit" id="h1">0</div>
+            <div class="digit" id="h1">
+                0
+            </div>
 
-            <div class="digit" id="h2">0</div>
-
-
-            <div id="colon">
-                <span></span>
-                <span></span>
+            <div class="digit" id="h2">
+                0
             </div>
 
 
-            <div class="digit" id="m1">0</div>
+            <div id="colon">
 
-            <div class="digit" id="m2">0</div>
+                <span></span>
+                <span></span>
+
+            </div>
 
 
-            <div class="seconds" id="seconds">
+            <div class="digit" id="m1">
+                0
+            </div>
+
+            <div class="digit" id="m2">
+                0
+            </div>
+
+
+            <div
+                class="seconds"
+                id="seconds"
+            >
                 00
             </div>
 
@@ -570,6 +925,7 @@
 
         <div id="dateDisplay"></div>
 
+
         <div
             class="resizeHandle"
             data-target="dateWidget"
@@ -583,9 +939,10 @@
 
     <div id="designBanner">
 
-        <div id="designBannerText">
+        <span>
             Drag to move · corner dot to resize
-        </div>
+        </span>
+
 
         <button
             id="doneDesignButton"
@@ -598,7 +955,7 @@
 
 
 
-    <!-- SETTINGS -->
+    <!-- SETTINGS BUTTON -->
 
     <button
         id="settingsButton"
@@ -608,7 +965,11 @@
     </button>
 
 
+
+    <!-- SETTINGS PANEL -->
+
     <div id="settingsPanel">
+
 
         <input
             id="youtubeInput"
@@ -616,18 +977,20 @@
             placeholder="Paste YouTube link here"
         >
 
+
         <button
             id="loadButton"
             class="settingsAction"
             type="button"
         >
-            Load video
+            ▶ Load video
         </button>
 
 
         <div id="hint">
             Paste a normal YouTube or youtu.be link.
         </div>
+
 
 
         <div class="settingsDivider"></div>
@@ -650,15 +1013,153 @@
             Reset layout
         </button>
 
+
+
+        <div class="settingsDivider"></div>
+
+
+        <div class="settingsTitle">
+            Colour
+        </div>
+
+
+        <div class="choiceRow">
+
+            <button
+                class="choiceButton colourButton selected"
+                data-colour="white"
+                type="button"
+            >
+                White
+            </button>
+
+
+            <button
+                class="choiceButton colourButton"
+                data-colour="black"
+                type="button"
+            >
+                Black
+            </button>
+
+
+            <button
+                class="choiceButton colourButton"
+                data-colour="warm"
+                type="button"
+            >
+                Warm
+            </button>
+
+        </div>
+
+
+
+        <div class="settingsDivider"></div>
+
+
+        <div class="settingsTitle">
+            Clock font
+        </div>
+
+
+        <div class="fontGrid">
+
+            <button
+                class="choiceButton clockFontButton font-cutive"
+                data-font="cutive"
+                type="button"
+            >
+                Cutive Mono
+            </button>
+
+
+            <button
+                class="choiceButton clockFontButton font-arial selected"
+                data-font="arial"
+                type="button"
+            >
+                Arial
+            </button>
+
+
+            <button
+                class="choiceButton clockFontButton font-handwriting"
+                data-font="handwriting"
+                type="button"
+            >
+                Handwriting
+            </button>
+
+
+            <button
+                class="choiceButton clockFontButton font-calligraphy"
+                data-font="calligraphy"
+                type="button"
+            >
+                Calligraphy
+            </button>
+
+        </div>
+
+
+
+        <div class="settingsTitle">
+            Date font
+        </div>
+
+
+        <div class="fontGrid">
+
+            <button
+                class="choiceButton dateFontButton font-cutive selected"
+                data-font="cutive"
+                type="button"
+            >
+                Cutive Mono
+            </button>
+
+
+            <button
+                class="choiceButton dateFontButton font-arial"
+                data-font="arial"
+                type="button"
+            >
+                Arial
+            </button>
+
+
+            <button
+                class="choiceButton dateFontButton font-handwriting"
+                data-font="handwriting"
+                type="button"
+            >
+                Handwriting
+            </button>
+
+
+            <button
+                class="choiceButton dateFontButton font-calligraphy"
+                data-font="calligraphy"
+                type="button"
+            >
+                Calligraphy
+            </button>
+
+        </div>
+
+
     </div>
 
 
 
     <script>
 
-        /* ==================================
-           DATE / TIME
-        ================================== */
+
+        /* =========================
+           TIME + DATE
+        ========================= */
+
 
         function getOrdinalSuffix(dayNumber) {
 
@@ -666,11 +1167,15 @@
                 dayNumber >= 11 &&
                 dayNumber <= 13
             ) {
+
                 return "th";
+
             }
 
 
-            switch (dayNumber % 10) {
+            switch (
+                dayNumber % 10
+            ) {
 
                 case 1:
                     return "st";
@@ -683,7 +1188,9 @@
 
                 default:
                     return "th";
+
             }
+
         }
 
 
@@ -756,7 +1263,8 @@
                 now.toLocaleDateString(
                     "en-GB",
                     {
-                        weekday: "long"
+                        weekday:
+                            "long"
                     }
                 );
 
@@ -765,19 +1273,14 @@
                 now.toLocaleDateString(
                     "en-GB",
                     {
-                        month: "long"
+                        month:
+                            "long"
                     }
                 );
 
 
             const dayNumber =
                 now.getDate();
-
-
-            const ordinalSuffix =
-                getOrdinalSuffix(
-                    dayNumber
-                );
 
 
             document
@@ -794,7 +1297,9 @@
 
                 "<sup>" +
 
-                ordinalSuffix +
+                getOrdinalSuffix(
+                    dayNumber
+                ) +
 
                 "</sup> " +
 
@@ -805,6 +1310,7 @@
 
         updateClock();
 
+
         setInterval(
             updateClock,
             1000
@@ -812,9 +1318,74 @@
 
 
 
-        /* ==================================
+        /* =========================
+           ELEMENTS
+        ========================= */
+
+
+        const root =
+            document.documentElement;
+
+
+        const clockWidget =
+            document.getElementById(
+                "clockWidget"
+            );
+
+
+        const dateWidget =
+            document.getElementById(
+                "dateWidget"
+            );
+
+
+        const settingsButton =
+            document.getElementById(
+                "settingsButton"
+            );
+
+
+        const settingsPanel =
+            document.getElementById(
+                "settingsPanel"
+            );
+
+
+        const designButton =
+            document.getElementById(
+                "designButton"
+            );
+
+
+        const doneDesignButton =
+            document.getElementById(
+                "doneDesignButton"
+            );
+
+
+        const resetLayoutButton =
+            document.getElementById(
+                "resetLayoutButton"
+            );
+
+
+        const youtubeInput =
+            document.getElementById(
+                "youtubeInput"
+            );
+
+
+        const loadButton =
+            document.getElementById(
+                "loadButton"
+            );
+
+
+
+        /* =========================
            YOUTUBE
-        ================================== */
+        ========================= */
+
 
         function getYouTubeId(url) {
 
@@ -878,7 +1449,11 @@
 
         function loadVideo(videoId) {
 
-            const embedUrl =
+            document
+                .getElementById(
+                    "videoFrame"
+                )
+                .src =
 
                 "https://www.youtube.com/embed/" +
 
@@ -900,75 +1475,7 @@
 
                 "&rel=0";
 
-
-            document
-                .getElementById(
-                    "videoFrame"
-                )
-                .src =
-                embedUrl;
-
         }
-
-
-
-        /* ==================================
-           SETTINGS
-        ================================== */
-
-        const settingsButton =
-            document.getElementById(
-                "settingsButton"
-            );
-
-
-        const settingsPanel =
-            document.getElementById(
-                "settingsPanel"
-            );
-
-
-        const loadButton =
-            document.getElementById(
-                "loadButton"
-            );
-
-
-        const youtubeInput =
-            document.getElementById(
-                "youtubeInput"
-            );
-
-
-        const designButton =
-            document.getElementById(
-                "designButton"
-            );
-
-
-        const doneDesignButton =
-            document.getElementById(
-                "doneDesignButton"
-            );
-
-
-        const resetLayoutButton =
-            document.getElementById(
-                "resetLayoutButton"
-            );
-
-
-
-        settingsButton.addEventListener(
-            "click",
-            function () {
-
-                settingsPanel
-                    .classList
-                    .toggle("show");
-
-            }
-        );
 
 
 
@@ -1002,25 +1509,113 @@
 
                 settingsPanel
                     .classList
-                    .remove("show");
+                    .remove(
+                        "show"
+                    );
 
             }
         );
 
 
 
-        /* ==================================
+        /* =========================
+           SETTINGS
+        ========================= */
+
+
+        settingsButton.addEventListener(
+            "click",
+            function () {
+
+                settingsPanel
+                    .classList
+                    .toggle(
+                        "show"
+                    );
+
+            }
+        );
+
+
+
+        /* =========================
            DESIGN MODE
-        ================================== */
+        ========================= */
+
 
         let designMode =
             false;
+
+
+
+        function prepareForEditing(
+            element
+        ) {
+
+            const rect =
+                element
+                    .getBoundingClientRect();
+
+
+            const centreX =
+                rect.left +
+                rect.width / 2;
+
+
+            const centreY =
+                rect.top +
+                rect.height / 2;
+
+
+            element.style.left =
+                centreX + "px";
+
+
+            element.style.top =
+                centreY + "px";
+
+
+            element.style.right =
+                "auto";
+
+
+            element.style.bottom =
+                "auto";
+
+
+            if (
+                element.id ===
+                "clockWidget"
+            ) {
+
+                element.style.transform =
+                    "translate(-50%, -50%) scale(var(--clock-scale, 1))";
+
+            } else {
+
+                element.style.transform =
+                    "translate(-50%, -50%) scale(var(--date-scale, 1))";
+
+            }
+
+        }
+
 
 
         function enterDesignMode() {
 
             designMode =
                 true;
+
+
+            prepareForEditing(
+                clockWidget
+            );
+
+
+            prepareForEditing(
+                dateWidget
+            );
 
 
             document
@@ -1033,21 +1628,9 @@
 
             settingsPanel
                 .classList
-                .remove("show");
-
-
-            convertToPixelPosition(
-                document.getElementById(
-                    "clockWidget"
-                )
-            );
-
-
-            convertToPixelPosition(
-                document.getElementById(
-                    "dateWidget"
-                )
-            );
+                .remove(
+                    "show"
+                );
 
         }
 
@@ -1067,7 +1650,7 @@
                 );
 
 
-            saveLayout();
+            saveSettings();
 
         }
 
@@ -1086,75 +1669,17 @@
 
 
 
-        /* ==================================
-           POSITION CONVERSION
-        ================================== */
-
-        function convertToPixelPosition(
-            element
-        ) {
-
-            if (
-                element.dataset.positioned ===
-                "true"
-            ) {
-                return;
-            }
-
-
-            const rect =
-                element
-                    .getBoundingClientRect();
-
-
-            element.style.left =
-                rect.left + "px";
-
-
-            element.style.top =
-                rect.top + "px";
-
-
-            element.style.right =
-                "auto";
-
-
-            element.style.bottom =
-                "auto";
-
-
-            if (
-                element.id ===
-                "clockWidget"
-            ) {
-
-                element.style.transform =
-                    "scale(var(--clock-scale, 1))";
-
-            } else {
-
-                element.style.transform =
-                    "scale(var(--date-scale, 1))";
-
-            }
-
-
-            element.dataset.positioned =
-                "true";
-
-        }
-
-
-
-        /* ==================================
+        /* =========================
            DRAGGING
-        ================================== */
+        ========================= */
+
 
         let dragState =
             null;
 
 
-        function beginDrag(
+
+        function startDrag(
             event,
             element
         ) {
@@ -1165,12 +1690,15 @@
 
 
             if (
-                event.target.classList
+                event.target
+                    .classList
                     .contains(
                         "resizeHandle"
                     )
             ) {
+
                 return;
+
             }
 
 
@@ -1187,134 +1715,23 @@
                 element:
                     element,
 
-                pointerId:
-                    event.pointerId,
-
                 offsetX:
                     event.clientX -
-                    rect.left,
+                    (
+                        rect.left +
+                        rect.width / 2
+                    ),
 
                 offsetY:
                     event.clientY -
-                    rect.top
+                    (
+                        rect.top +
+                        rect.height / 2
+                    )
 
             };
 
-
-            element.setPointerCapture(
-                event.pointerId
-            );
-
         }
-
-
-
-        function moveDrag(event) {
-
-            if (!dragState) {
-                return;
-            }
-
-
-            const element =
-                dragState.element;
-
-
-            const rect =
-                element
-                    .getBoundingClientRect();
-
-
-            let left =
-                event.clientX -
-                dragState.offsetX;
-
-
-            let top =
-                event.clientY -
-                dragState.offsetY;
-
-
-            const maxLeft =
-                window.innerWidth -
-                rect.width;
-
-
-            const maxTop =
-                window.innerHeight -
-                rect.height;
-
-
-            left =
-                Math.max(
-                    0,
-                    Math.min(
-                        maxLeft,
-                        left
-                    )
-                );
-
-
-            top =
-                Math.max(
-                    0,
-                    Math.min(
-                        maxTop,
-                        top
-                    )
-                );
-
-
-            element.style.left =
-                left + "px";
-
-
-            element.style.top =
-                top + "px";
-
-        }
-
-
-
-        function endDrag(event) {
-
-            if (!dragState) {
-                return;
-            }
-
-
-            try {
-
-                dragState
-                    .element
-                    .releasePointerCapture(
-                        dragState.pointerId
-                    );
-
-            } catch (error) {
-            }
-
-
-            dragState =
-                null;
-
-
-            saveLayout();
-
-        }
-
-
-
-        const clockWidget =
-            document.getElementById(
-                "clockWidget"
-            );
-
-
-        const dateWidget =
-            document.getElementById(
-                "dateWidget"
-            );
 
 
 
@@ -1322,7 +1739,7 @@
             "pointerdown",
             function (event) {
 
-                beginDrag(
+                startDrag(
                     event,
                     clockWidget
                 );
@@ -1335,7 +1752,7 @@
             "pointerdown",
             function (event) {
 
-                beginDrag(
+                startDrag(
                     event,
                     dateWidget
                 );
@@ -1344,31 +1761,157 @@
         );
 
 
+
         window.addEventListener(
             "pointermove",
-            moveDrag
+            function (event) {
+
+                if (!dragState) {
+                    return;
+                }
+
+
+                event.preventDefault();
+
+
+                const element =
+                    dragState.element;
+
+
+                /*
+                    IMPORTANT:
+
+                    getBoundingClientRect()
+                    returns the ACTUAL VISUAL SIZE
+                    after scaling.
+
+                    So when the date is tiny,
+                    its boundary is tiny too.
+                */
+
+
+                const rect =
+                    element
+                        .getBoundingClientRect();
+
+
+                const halfWidth =
+                    rect.width / 2;
+
+
+                const halfHeight =
+                    rect.height / 2;
+
+
+                let centreX =
+                    event.clientX -
+                    dragState.offsetX;
+
+
+                let centreY =
+                    event.clientY -
+                    dragState.offsetY;
+
+
+                centreX =
+                    Math.max(
+                        halfWidth,
+                        Math.min(
+                            window.innerWidth -
+                            halfWidth,
+                            centreX
+                        )
+                    );
+
+
+                centreY =
+                    Math.max(
+                        halfHeight,
+                        Math.min(
+                            window.innerHeight -
+                            halfHeight,
+                            centreY
+                        )
+                    );
+
+
+                element.style.left =
+                    centreX + "px";
+
+
+                element.style.top =
+                    centreY + "px";
+
+            },
+            {
+                passive:
+                    false
+            }
         );
+
 
 
         window.addEventListener(
             "pointerup",
-            endDrag
+            function () {
+
+                if (
+                    dragState
+                ) {
+
+                    dragState =
+                        null;
+
+
+                    saveSettings();
+
+                }
+
+            }
         );
 
 
-        window.addEventListener(
-            "pointercancel",
-            endDrag
-        );
 
-
-
-        /* ==================================
+        /* =========================
            RESIZING
-        ================================== */
+        ========================= */
+
 
         let resizeState =
             null;
+
+
+
+        function getScale(
+            element
+        ) {
+
+            const property =
+
+                element.id ===
+                "clockWidget"
+
+                ? "--clock-scale"
+
+                : "--date-scale";
+
+
+            return (
+
+                parseFloat(
+
+                    getComputedStyle(
+                        element
+                    )
+                    .getPropertyValue(
+                        property
+                    )
+
+                ) || 1
+
+            );
+
+        }
 
 
 
@@ -1394,19 +1937,12 @@
 
 
                             const target =
-                                document.getElementById(
-                                    handle.dataset.target
-                                );
-
-
-                            const currentScale =
-
-                                target.id ===
-                                "clockWidget"
-
-                                    ? getClockScale()
-
-                                    : getDateScale();
+                                document
+                                    .getElementById(
+                                        handle
+                                            .dataset
+                                            .target
+                                    );
 
 
                             resizeState = {
@@ -1414,21 +1950,15 @@
                                 target:
                                     target,
 
-                                pointerId:
-                                    event.pointerId,
-
                                 startX:
                                     event.clientX,
 
                                 startScale:
-                                    currentScale
+                                    getScale(
+                                        target
+                                    )
 
                             };
-
-
-                            handle.setPointerCapture(
-                                event.pointerId
-                            );
 
                         }
                     );
@@ -1447,27 +1977,25 @@
                 }
 
 
-                const delta =
+                event.preventDefault();
+
+
+                const difference =
                     event.clientX -
                     resizeState.startX;
 
 
-                let newScale =
-
+                let scale =
                     resizeState.startScale +
-
-                    (
-                        delta /
-                        300
-                    );
+                    difference / 300;
 
 
-                newScale =
+                scale =
                     Math.max(
-                        0.45,
+                        0.30,
                         Math.min(
-                            2.5,
-                            newScale
+                            3,
+                            scale
                         )
                     );
 
@@ -1484,7 +2012,7 @@
                         .style
                         .setProperty(
                             "--clock-scale",
-                            newScale
+                            scale
                         );
 
                 } else {
@@ -1494,11 +2022,15 @@
                         .style
                         .setProperty(
                             "--date-scale",
-                            newScale
+                            scale
                         );
 
                 }
 
+            },
+            {
+                passive:
+                    false
             }
         );
 
@@ -1516,7 +2048,7 @@
                         null;
 
 
-                    saveLayout();
+                    saveSettings();
 
                 }
 
@@ -1525,89 +2057,346 @@
 
 
 
-        function getClockScale() {
+        /* =========================
+           COLOURS
+        ========================= */
 
-            return parseFloat(
 
-                getComputedStyle(
-                    clockWidget
+        const colourOptions = {
+
+            white: {
+
+                text:
+                    "#ffffff",
+
+                tile:
+                    "rgba(0,0,0,0.20)"
+
+            },
+
+
+            black: {
+
+                text:
+                    "#111111",
+
+                tile:
+                    "rgba(255,255,255,0.28)"
+
+            },
+
+
+            warm: {
+
+                text:
+                    "#fff1d6",
+
+                tile:
+                    "rgba(45,30,15,0.28)"
+
+            }
+
+        };
+
+
+
+        let selectedColour =
+            "white";
+
+
+
+        function applyColour(
+            name
+        ) {
+
+            const option =
+                colourOptions[name];
+
+
+            if (!option) {
+                return;
+            }
+
+
+            selectedColour =
+                name;
+
+
+            root.style.setProperty(
+                "--text-color",
+                option.text
+            );
+
+
+            root.style.setProperty(
+                "--tile-color",
+                option.tile
+            );
+
+
+            document
+                .querySelectorAll(
+                    ".colourButton"
                 )
-                .getPropertyValue(
-                    "--clock-scale"
-                )
+                .forEach(
+                    function (button) {
 
-            ) || 1;
+                        button
+                            .classList
+                            .toggle(
+                                "selected",
+                                button
+                                    .dataset
+                                    .colour ===
+                                name
+                            );
+
+                    }
+                );
+
+
+            saveSettings();
 
         }
 
 
 
-        function getDateScale() {
+        document
+            .querySelectorAll(
+                ".colourButton"
+            )
+            .forEach(
+                function (button) {
 
-            return parseFloat(
+                    button.addEventListener(
+                        "click",
+                        function () {
 
-                getComputedStyle(
-                    dateWidget
-                )
-                .getPropertyValue(
-                    "--date-scale"
-                )
+                            applyColour(
+                                button
+                                    .dataset
+                                    .colour
+                            );
 
-            ) || 1;
-
-        }
-
-
-
-        /* ==================================
-           SAVE LAYOUT
-        ================================== */
-
-        function saveLayout() {
-
-            const layout = {
-
-                clock: {
-
-                    left:
-                        clockWidget
-                            .style
-                            .left,
-
-                    top:
-                        clockWidget
-                            .style
-                            .top,
-
-                    scale:
-                        getClockScale()
-
-                },
-
-                date: {
-
-                    left:
-                        dateWidget
-                            .style
-                            .left,
-
-                    top:
-                        dateWidget
-                            .style
-                            .top,
-
-                    scale:
-                        getDateScale()
+                        }
+                    );
 
                 }
+            );
+
+
+
+        /* =========================
+           FONTS
+        ========================= */
+
+
+        const fonts = {
+
+            cutive:
+                '"Cutive Mono", monospace',
+
+            arial:
+                'Arial, sans-serif',
+
+            handwriting:
+                '"Caveat", cursive',
+
+            calligraphy:
+                '"Great Vibes", cursive'
+
+        };
+
+
+
+        let selectedClockFont =
+            "arial";
+
+
+        let selectedDateFont =
+            "cutive";
+
+
+
+        function applyClockFont(
+            name
+        ) {
+
+            selectedClockFont =
+                name;
+
+
+            root.style.setProperty(
+                "--clock-font",
+                fonts[name]
+            );
+
+
+            document
+                .querySelectorAll(
+                    ".clockFontButton"
+                )
+                .forEach(
+                    function (button) {
+
+                        button
+                            .classList
+                            .toggle(
+                                "selected",
+                                button
+                                    .dataset
+                                    .font ===
+                                name
+                            );
+
+                    }
+                );
+
+
+            saveSettings();
+
+        }
+
+
+
+        function applyDateFont(
+            name
+        ) {
+
+            selectedDateFont =
+                name;
+
+
+            root.style.setProperty(
+                "--date-font",
+                fonts[name]
+            );
+
+
+            document
+                .querySelectorAll(
+                    ".dateFontButton"
+                )
+                .forEach(
+                    function (button) {
+
+                        button
+                            .classList
+                            .toggle(
+                                "selected",
+                                button
+                                    .dataset
+                                    .font ===
+                                name
+                            );
+
+                    }
+                );
+
+
+            saveSettings();
+
+        }
+
+
+
+        document
+            .querySelectorAll(
+                ".clockFontButton"
+            )
+            .forEach(
+                function (button) {
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            applyClockFont(
+                                button
+                                    .dataset
+                                    .font
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+
+        document
+            .querySelectorAll(
+                ".dateFontButton"
+            )
+            .forEach(
+                function (button) {
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            applyDateFont(
+                                button
+                                    .dataset
+                                    .font
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+
+        /* =========================
+           SAVE EVERYTHING
+        ========================= */
+
+
+        function saveSettings() {
+
+            const settings = {
+
+                clockLeft:
+                    clockWidget.style.left,
+
+                clockTop:
+                    clockWidget.style.top,
+
+                clockScale:
+                    getScale(
+                        clockWidget
+                    ),
+
+                dateLeft:
+                    dateWidget.style.left,
+
+                dateTop:
+                    dateWidget.style.top,
+
+                dateScale:
+                    getScale(
+                        dateWidget
+                    ),
+
+                colour:
+                    selectedColour,
+
+                clockFont:
+                    selectedClockFont,
+
+                dateFont:
+                    selectedDateFont
 
             };
 
 
             localStorage.setItem(
-                "videoClockLayout",
+                "videoClockSettings",
                 JSON.stringify(
-                    layout
+                    settings
                 )
             );
 
@@ -1615,11 +2404,11 @@
 
 
 
-        function loadLayout() {
+        function loadSettings() {
 
             const saved =
                 localStorage.getItem(
-                    "videoClockLayout"
+                    "videoClockSettings"
                 );
 
 
@@ -1630,104 +2419,96 @@
 
             try {
 
-                const layout =
+                const settings =
                     JSON.parse(
                         saved
                     );
 
 
                 if (
-                    layout.clock
+                    settings.clockLeft &&
+                    settings.clockTop
                 ) {
 
-                    clockWidget
-                        .style
-                        .left =
-                        layout.clock.left;
+                    clockWidget.style.left =
+                        settings.clockLeft;
 
 
-                    clockWidget
-                        .style
-                        .top =
-                        layout.clock.top;
+                    clockWidget.style.top =
+                        settings.clockTop;
 
 
-                    clockWidget
-                        .style
-                        .transform =
-                        "scale(var(--clock-scale, 1))";
+                    clockWidget.style.bottom =
+                        "auto";
 
 
-                    clockWidget
-                        .style
-                        .setProperty(
-                            "--clock-scale",
-                            layout.clock.scale || 1
-                        );
-
-
-                    clockWidget
-                        .dataset
-                        .positioned =
-                        "true";
+                    clockWidget.style.transform =
+                        "translate(-50%, -50%) scale(var(--clock-scale, 1))";
 
                 }
 
 
                 if (
-                    layout.date
+                    settings.dateLeft &&
+                    settings.dateTop
                 ) {
 
-                    dateWidget
-                        .style
-                        .left =
-                        layout.date.left;
+                    dateWidget.style.left =
+                        settings.dateLeft;
 
 
-                    dateWidget
-                        .style
-                        .top =
-                        layout.date.top;
+                    dateWidget.style.top =
+                        settings.dateTop;
 
 
-                    dateWidget
-                        .style
-                        .right =
+                    dateWidget.style.bottom =
                         "auto";
 
 
-                    dateWidget
-                        .style
-                        .bottom =
-                        "auto";
-
-
-                    dateWidget
-                        .style
-                        .transform =
-                        "scale(var(--date-scale, 1))";
-
-
-                    dateWidget
-                        .style
-                        .setProperty(
-                            "--date-scale",
-                            layout.date.scale || 1
-                        );
-
-
-                    dateWidget
-                        .dataset
-                        .positioned =
-                        "true";
+                    dateWidget.style.transform =
+                        "translate(-50%, -50%) scale(var(--date-scale, 1))";
 
                 }
+
+
+                clockWidget
+                    .style
+                    .setProperty(
+                        "--clock-scale",
+                        settings.clockScale || 1
+                    );
+
+
+                dateWidget
+                    .style
+                    .setProperty(
+                        "--date-scale",
+                        settings.dateScale || 1
+                    );
+
+
+                applyColour(
+                    settings.colour ||
+                    "white"
+                );
+
+
+                applyClockFont(
+                    settings.clockFont ||
+                    "arial"
+                );
+
+
+                applyDateFont(
+                    settings.dateFont ||
+                    "cutive"
+                );
 
 
             } catch (error) {
 
                 console.log(
-                    "Could not load saved layout."
+                    "Saved settings could not be loaded."
                 );
 
             }
@@ -1736,55 +2517,34 @@
 
 
 
-        /* ==================================
-           RESET LAYOUT
-        ================================== */
+        /* =========================
+           RESET
+        ========================= */
+
 
         resetLayoutButton.addEventListener(
             "click",
             function () {
 
                 localStorage.removeItem(
-                    "videoClockLayout"
+                    "videoClockSettings"
                 );
 
 
-                clockWidget.removeAttribute(
-                    "style"
-                );
-
-
-                dateWidget.removeAttribute(
-                    "style"
-                );
-
-
-                delete clockWidget
-                    .dataset
-                    .positioned;
-
-
-                delete dateWidget
-                    .dataset
-                    .positioned;
-
-
-                settingsPanel
-                    .classList
-                    .remove(
-                        "show"
-                    );
+                location.reload();
 
             }
         );
 
 
 
-        /* ==================================
-           LOAD SAVED POSITION
-        ================================== */
+        /* =========================
+           START
+        ========================= */
 
-        loadLayout();
+
+        loadSettings();
+
 
     </script>
 
