@@ -1,259 +1,521 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta charset="UTF-8">
 
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
 
-  <title>Video Clock</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+    <title>Video Clock</title>
 
-    html,
-    body {
-      margin: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: black;
-      font-family: Arial, sans-serif;
-    }
+    <style>
 
-    #videoFrame {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      width: 177.78vh;
-      height: 100vh;
-      min-width: 100vw;
-      min-height: 56.25vw;
-      transform: translate(-50%, -50%);
-      border: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
+        * {
+            box-sizing: border-box;
+        }
 
-    #shade {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.18);
-      z-index: 1;
-      pointer-events: none;
-    }
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: black;
 
-    #clockContainer {
-      position: fixed;
-      inset: 0;
-      z-index: 2;
+            font-family:
+                "Helvetica Neue",
+                Helvetica,
+                Arial,
+                sans-serif;
+        }
 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
 
-      color: white;
-      text-align: center;
-      pointer-events: none;
+        /* ---------------- VIDEO ---------------- */
 
-      text-shadow:
-        0 0 12px rgba(0, 0, 0, 0.85),
-        0 0 35px rgba(0, 0, 0, 0.75);
-    }
+        #videoFrame {
+            position: fixed;
+            top: 50%;
+            left: 50%;
 
-    #time {
-      font-size: 15vw;
-      font-weight: 300;
-      letter-spacing: 0.03em;
-    }
+            width: 177.78vh;
+            height: 100vh;
 
-    #date {
-      margin-top: 8px;
-      font-size: 3vw;
-      font-weight: 300;
-    }
+            min-width: 100vw;
+            min-height: 56.25vw;
 
-    #settingsButton {
-      position: fixed;
-      top: 18px;
-      right: 18px;
-      z-index: 4;
+            transform: translate(-50%, -50%);
 
-      width: 48px;
-      height: 48px;
-      border: 0;
-      border-radius: 50%;
+            border: 0;
 
-      background: rgba(0, 0, 0, 0.45);
-      color: white;
-      font-size: 22px;
-      cursor: pointer;
+            z-index: 0;
 
-      backdrop-filter: blur(10px);
-    }
+            pointer-events: none;
+        }
 
-    #settingsPanel {
-      position: fixed;
-      top: 76px;
-      right: 18px;
-      z-index: 4;
 
-      width: min(360px, calc(100vw - 36px));
-      padding: 16px;
+        /* Slight darkening over video */
 
-      display: none;
-      gap: 10px;
+        #shade {
+            position: fixed;
+            inset: 0;
 
-      background: rgba(0, 0, 0, 0.72);
-      color: white;
-      border-radius: 16px;
+            background: rgba(0, 0, 0, 0.08);
 
-      backdrop-filter: blur(14px);
-    }
+            z-index: 1;
 
-    #settingsPanel.show {
-      display: grid;
-    }
+            pointer-events: none;
+        }
 
-    #youtubeInput {
-      width: 100%;
-      padding: 12px;
 
-      border: 0;
-      border-radius: 10px;
+        /* ---------------- CLOCK ---------------- */
 
-      font-size: 16px;
-    }
+        #clockContainer {
+            position: fixed;
+            inset: 0;
 
-    #loadButton {
-      padding: 12px;
+            z-index: 2;
 
-      border: 0;
-      border-radius: 10px;
+            display: flex;
+            flex-direction: column;
 
-      font-size: 16px;
-      cursor: pointer;
-    }
+            align-items: center;
+            justify-content: center;
 
-    #hint {
-      font-size: 13px;
-      opacity: 0.75;
-    }
-  </style>
+            color: white;
+
+            pointer-events: none;
+        }
+
+
+        #clock {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 1.2vw;
+        }
+
+
+        .digit {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            width: 10vw;
+            height: 14vw;
+
+            border-radius: 2vw;
+
+            background: rgba(0, 0, 0, 0.20);
+
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+
+            font-size: 10vw;
+
+            font-weight: 200;
+
+            line-height: 1;
+
+            text-shadow:
+                0 2px 12px rgba(0, 0, 0, 0.35);
+        }
+
+
+        #colon {
+            font-size: 8vw;
+
+            font-weight: 100;
+
+            margin: 0 0.2vw;
+
+            text-shadow:
+                0 2px 12px rgba(0, 0, 0, 0.6);
+        }
+
+
+        #date {
+            margin-top: 2vw;
+
+            padding: 0.7vw 1.5vw;
+
+            border-radius: 1vw;
+
+            background: rgba(0, 0, 0, 0.20);
+
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+
+            font-size: 2.2vw;
+
+            font-weight: 200;
+
+            letter-spacing: 0.04em;
+        }
+
+
+        /* ---------------- SETTINGS ---------------- */
+
+        #settingsButton {
+            position: fixed;
+
+            top: 18px;
+            right: 18px;
+
+            z-index: 4;
+
+            width: 48px;
+            height: 48px;
+
+            border: 0;
+
+            border-radius: 50%;
+
+            background: rgba(0, 0, 0, 0.35);
+
+            color: white;
+
+            font-size: 21px;
+
+            cursor: pointer;
+
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+
+        #settingsPanel {
+            position: fixed;
+
+            top: 76px;
+            right: 18px;
+
+            z-index: 4;
+
+            width: min(360px, calc(100vw - 36px));
+
+            padding: 16px;
+
+            display: none;
+
+            gap: 10px;
+
+            background: rgba(0, 0, 0, 0.72);
+
+            color: white;
+
+            border-radius: 16px;
+
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+
+        #settingsPanel.show {
+            display: grid;
+        }
+
+
+        #youtubeInput {
+            width: 100%;
+
+            padding: 12px;
+
+            border: 0;
+
+            border-radius: 10px;
+
+            font-size: 16px;
+        }
+
+
+        #loadButton {
+            padding: 12px;
+
+            border: 0;
+
+            border-radius: 10px;
+
+            font-size: 16px;
+
+            cursor: pointer;
+        }
+
+
+        #hint {
+            font-size: 13px;
+
+            opacity: 0.75;
+        }
+
+    </style>
 </head>
+
 
 <body>
 
-  <iframe
-    id="videoFrame"
-    src="https://www.youtube.com/embed/5qap5aO4i9A?autoplay=1&mute=1&controls=0&loop=1&playlist=5qap5aO4i9A&modestbranding=1&rel=0"
-    allow="autoplay; encrypted-media"
-    allowfullscreen>
-  </iframe>
 
-  <div id="shade"></div>
+    <!-- YOUTUBE BACKGROUND -->
 
-  <div id="clockContainer">
-    <div id="time"></div>
-    <div id="date"></div>
-  </div>
+    <iframe
+        id="videoFrame"
+        src="https://www.youtube.com/embed/5qap5aO4i9A?autoplay=1&mute=1&controls=0&loop=1&playlist=5qap5aO4i9A&modestbranding=1&rel=0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+    </iframe>
 
-  <button id="settingsButton">⚙️</button>
 
-  <div id="settingsPanel">
-    <input
-      id="youtubeInput"
-      type="text"
-      placeholder="Paste YouTube link here">
+    <div id="shade"></div>
 
-    <button id="loadButton">Load video</button>
 
-    <div id="hint">
-      Paste a normal YouTube link or youtu.be link.
+
+    <!-- CLOCK -->
+
+    <div id="clockContainer">
+
+        <div id="clock">
+
+            <div class="digit" id="h1">0</div>
+
+            <div class="digit" id="h2">0</div>
+
+            <div id="colon">:</div>
+
+            <div class="digit" id="m1">0</div>
+
+            <div class="digit" id="m2">0</div>
+
+        </div>
+
+
+        <div id="date"></div>
+
     </div>
-  </div>
 
-  <script>
-    function updateClock() {
-      const now = new Date();
 
-      const time = now.toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false
-      });
 
-      const date = now.toLocaleDateString([], {
-        weekday: "long",
-        day: "numeric",
-        month: "long"
-      });
+    <!-- SETTINGS -->
 
-      document.getElementById("time").textContent = time;
-      document.getElementById("date").textContent = date;
-    }
+    <button id="settingsButton">⚙</button>
 
-    function getYouTubeId(url) {
-      try {
-        const parsed = new URL(url);
 
-        if (parsed.hostname.includes("youtu.be")) {
-          return parsed.pathname.slice(1);
+    <div id="settingsPanel">
+
+        <input
+            id="youtubeInput"
+            type="text"
+            placeholder="Paste YouTube link here"
+        >
+
+        <button id="loadButton">
+            Load video
+        </button>
+
+        <div id="hint">
+            Paste a normal YouTube or youtu.be link.
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        /* ---------- CLOCK ---------- */
+
+        function updateClock() {
+
+            const now = new Date();
+
+
+            const hours =
+                String(now.getHours()).padStart(2, "0");
+
+
+            const minutes =
+                String(now.getMinutes()).padStart(2, "0");
+
+
+            document.getElementById("h1").textContent =
+                hours[0];
+
+
+            document.getElementById("h2").textContent =
+                hours[1];
+
+
+            document.getElementById("m1").textContent =
+                minutes[0];
+
+
+            document.getElementById("m2").textContent =
+                minutes[1];
+
+
+            const date =
+                now.toLocaleDateString(
+                    "en-GB",
+                    {
+                        weekday: "long",
+                        day: "numeric",
+                        month: "long"
+                    }
+                );
+
+
+            document.getElementById("date").textContent =
+                date;
+
         }
 
-        if (parsed.hostname.includes("youtube.com")) {
-          return parsed.searchParams.get("v");
+
+        updateClock();
+
+        setInterval(updateClock, 1000);
+
+
+
+        /* ---------- YOUTUBE ---------- */
+
+        function getYouTubeId(url) {
+
+            try {
+
+                const parsed = new URL(url);
+
+
+                if (
+                    parsed.hostname.includes("youtu.be")
+                ) {
+
+                    return parsed.pathname.slice(1);
+
+                }
+
+
+                if (
+                    parsed.hostname.includes("youtube.com")
+                ) {
+
+                    return parsed.searchParams.get("v");
+
+                }
+
+
+            } catch (error) {
+
+                return null;
+
+            }
+
+
+            return null;
+
         }
-      } catch (error) {
-        return null;
-      }
 
-      return null;
-    }
 
-    function loadVideo(videoId) {
-      const embedUrl =
-        "https://www.youtube.com/embed/" +
-        videoId +
-        "?autoplay=1" +
-        "&mute=1" +
-        "&controls=0" +
-        "&loop=1" +
-        "&playlist=" + videoId +
-        "&modestbranding=1" +
-        "&rel=0";
 
-      document.getElementById("videoFrame").src = embedUrl;
-    }
+        function loadVideo(videoId) {
 
-    const settingsButton = document.getElementById("settingsButton");
-    const settingsPanel = document.getElementById("settingsPanel");
-    const loadButton = document.getElementById("loadButton");
-    const youtubeInput = document.getElementById("youtubeInput");
+            const embedUrl =
 
-    settingsButton.addEventListener("click", function () {
-      settingsPanel.classList.toggle("show");
-    });
+                "https://www.youtube.com/embed/" +
 
-    loadButton.addEventListener("click", function () {
-      const videoId = getYouTubeId(youtubeInput.value.trim());
+                videoId +
 
-      if (!videoId) {
-        alert("That doesn't look like a valid YouTube link.");
-        return;
-      }
+                "?autoplay=1" +
 
-      loadVideo(videoId);
-      settingsPanel.classList.remove("show");
-    });
+                "&mute=1" +
 
-    updateClock();
-    setInterval(updateClock, 1000);
-  </script>
+                "&controls=0" +
+
+                "&loop=1" +
+
+                "&playlist=" + videoId +
+
+                "&modestbranding=1" +
+
+                "&rel=0";
+
+
+            document.getElementById("videoFrame").src =
+                embedUrl;
+
+        }
+
+
+
+        /* ---------- SETTINGS ---------- */
+
+        const settingsButton =
+            document.getElementById("settingsButton");
+
+
+        const settingsPanel =
+            document.getElementById("settingsPanel");
+
+
+        const loadButton =
+            document.getElementById("loadButton");
+
+
+        const youtubeInput =
+            document.getElementById("youtubeInput");
+
+
+
+        settingsButton.addEventListener(
+            "click",
+            function () {
+
+                settingsPanel.classList.toggle("show");
+
+            }
+        );
+
+
+
+        loadButton.addEventListener(
+            "click",
+            function () {
+
+                const videoId =
+                    getYouTubeId(
+                        youtubeInput.value.trim()
+                    );
+
+
+                if (!videoId) {
+
+                    alert(
+                        "That doesn't look like a valid YouTube link."
+                    );
+
+                    return;
+
+                }
+
+
+                loadVideo(videoId);
+
+
+                settingsPanel.classList.remove("show");
+
+            }
+        );
+
+
+    </script>
+
 
 </body>
+
 </html>
