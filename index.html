@@ -14,6 +14,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <title>Video Clock</title>
+    <link rel="stylesheet" href="annotations.css">
 
 
     <style>
@@ -1624,6 +1625,16 @@
                     videoId
                 );
 
+                // Save the last successfully loaded link for the next visit.
+                try {
+                    localStorage.setItem(
+                        "videoClockLastVideo",
+                        youtubeInput.value.trim()
+                    );
+                } catch (error) {
+                    console.warn("The video link could not be saved.", error);
+                }
+
 
                 settingsPanel
                     .classList
@@ -1721,6 +1732,10 @@
 
 
         function enterDesignMode() {
+            // Keep drawing mode from blocking clock layout dragging.
+            if (window.videoClockAnnotations) {
+                window.videoClockAnnotations.close();
+            }
 
             designMode =
                 true;
@@ -2774,8 +2789,20 @@
 
         loadSettings();
 
+        // Restore the last video rather than reverting to the default.
+        try {
+            const lastVideoLink = localStorage.getItem("videoClockLastVideo");
+            const lastVideoId = lastVideoLink && getYouTubeId(lastVideoLink);
+            if (lastVideoId) {
+                youtubeInput.value = lastVideoLink;
+                loadVideo(lastVideoId);
+            }
+        } catch (error) {
+            console.warn("The last video could not be restored.", error);
+        }
 
     </script>
+    <script src="annotations.js"></script>
 
 
 </body>
