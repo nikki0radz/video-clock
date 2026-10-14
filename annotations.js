@@ -1,576 +1,394 @@
-(function () {
-  "use strict";
-
-  const STORAGE_KEY = "videoClockAnnotations";
-  const canvas = document.createElement("canvas");
-  canvas.id = "annotationCanvas";
-  canvas.setAttribute("aria-label", "Drawing and text overlay");
-
-  const selection = document.createElement("div");
-  selection.id = "annotationSelection";
-  selection.hidden = true;
-  selection.setAttribute("aria-label", "Selected drawing or text. Drag to move.");
-  selection.innerHTML = '<button type="button" id="annotationResize" aria-label="Drag to resize the selected object" title="Drag to resize">↘</button>';
-
-  const toggle = document.createElement("button");
-  toggle.id = "annotationToggle";
-  toggle.type = "button";
-  toggle.textContent = "✎";
-  toggle.title = "Draw or write on screen";
-  toggle.setAttribute("aria-label", "Draw or write on screen");
-  toggle.setAttribute("aria-expanded", "false");
-
-  const toolbar = document.createElement("section");
-  toolbar.id = "annotationToolbar";
-  toolbar.hidden = true;
-  toolbar.setAttribute("aria-label", "Drawing tools");
-  toolbar.innerHTML =
-    '<div class="annotation-heading"><span>✎ Draw &amp; write</span><button type="button" id="annotationDone">Done</button></div>' +
-    '<div class="annotation-tool-row">' +
-      '<button type="button" class="annotation-tool selected" data-annotation-mode="select">↖ Move</button>' +
-      '<button type="button" class="annotation-tool" data-annotation-mode="draw">✎ Draw</button>' +
-      '<button type="button" class="annotation-tool" data-annotation-mode="text">T Text</button>' +
-      '<button type="button" class="annotation-tool" data-annotation-mode="erase">⌫ Erase</button>' +
-    '</div>' +
-    '<div class="annotation-options">' +
-      '<label for="annotationColor">Colour</label><input id="annotationColor" type="color" value="#ffffff">' +
-      '<label for="annotationSize">Size</label><input id="annotationSize" type="range" min="2" max="24" value="8">' +
-    '</div>' +
-    '<div id="annotationDrawHelp" class="annotation-hint">Tap Draw to sketch or Text to add a message. Select an object to move or resize it.</div>' +
-    '<div id="annotationDraftActions" class="annotation-draft-actions" hidden>' +
-      '<span class="annotation-hint">Your strokes will become one movable doodle.</span>' +
-      '<button type="button" class="annotation-action" id="annotationFinishDoodle">✓ Finish doodle</button>' +
-    '</div>' +
-    '<div class="annotation-text-row">' +
-      '<textarea id="annotationText" maxlength="500" placeholder="Write your message here..."></textarea>' +
-      '<div class="annotation-hint" id="annotationTextHelp">Type a message, then tap the screen to place it.</div>' +
-      '<button type="button" class="annotation-action annotation-save-text" id="annotationSaveText" hidden>Save text changes</button>' +
-    '</div>' +
-    '<div class="annotation-actions">' +
-      '<button type="button" class="annotation-action" id="annotationUndo">↶ Undo</button>' +
-      '<button type="button" class="annotation-action" id="annotationEditSelected" hidden>✎ Edit text</button>' +
-      '<button type="button" class="annotation-action" id="annotationDeleteSelected" hidden>Delete selected</button>' +
-      '<button type="button" class="annotation-action" id="annotationClear">Clear all</button>' +
-    '</div>';
-
-  document.body.append(canvas, selection, toolbar, toggle);
-
-  const ctx = canvas.getContext("2d");
-  if (!ctx) {
-    toggle.hidden = true;
-    return;
+(() => {
+"use strict";
+const KEY="videoClockAnnotations", PANEL_KEY="videoClockPanelPosition";
+const canvas=document.createElement("canvas");canvas.id="annotationCanvas";
+const hitLayer=document.createElement("div");hitLayer.id="annotationHitLayer";
+const selection=document.createElement("div");selection.id="annotationSelection";selection.hidden=true;
+selection.innerHTML='<button type="button" id="annotationDeleteSelected" title="Delete" aria-label="Delete item">×</button><button type="button" id="annotationResize" title="Resize" aria-label="Resize item">↘</button>';
+const toggle=document.createElement("button");toggle.id="annotationToggle";toggle.type="button";toggle.textContent="✎";toggle.title="Draw or type";toggle.setAttribute("aria-expanded","false");
+const toolbar=document.createElement("section");toolbar.id="annotationToolbar";toolbar.hidden=true;
+toolbar.setAttribute("aria-label","Text and drawing controls");
+toolbar.innerHTML=[
+'<div class="annotation-heading" id="annotationDragBar"><span title="Drag to move the settings">⠿ &nbsp; Draw &amp; write</span><button id="annotationDone" type="button">Done</button></div>',
+'<div class="annotation-tool-row"><button type="button" class="annotation-tool selected" data-annotation-mode="text">T &nbsp; Text</button><button type="button" class="annotation-tool" data-annotation-mode="draw">✎ &nbsp; Draw</button></div>',
+'<div class="annotation-options"><label for="annotationColor">Colour</label><input type="color" id="annotationColor" value="#ffffff"></div>',
+'<div id="annotationTextControls" class="annotation-control-section">',
+'<label for="annotationText">Message</label><textarea id="annotationText" rows="3" maxlength="500" placeholder="Start typing and see it appear on the clock…"></textarea>',
+'<label for="annotationSize">Text size <output id="annotationSizeValue">34</output></label><input id="annotationSize" type="range" min="14" max="100" value="34">',
+'<label for="annotationFont">Font</label><select id="annotationFont"><option value="caveat">Handwriting</option><option value="arial">Arial</option><option value="cutive">Typewriter</option><option value="vibes">Calligraphy</option></select>',
+'<span class="annotation-small-label">Alignment</span><div class="annotation-align-row"><button type="button" data-annotation-align="left" class="selected" title="Left">☰</button><button type="button" data-annotation-align="center" title="Centre">≡</button><button type="button" data-annotation-align="right" title="Right">☷</button></div>',
+'<p class="annotation-hint">Text appears immediately. Drag it on the screen to move it, or drag its corner to resize.</p>',
+'<div class="annotation-text-actions"><button id="annotationSaveText" type="button" class="annotation-action">✓ Save text</button><button id="annotationNewText" type="button" class="annotation-action">+ New text</button></div>',
+'</div>',
+'<div id="annotationDrawControls" class="annotation-control-section" hidden>',
+'<label for="annotationPenSize">Pen thickness <output id="annotationPenValue">8</output></label><input id="annotationPenSize" type="range" min="1" max="30" value="8">',
+'<button type="button" id="annotationEraser" class="annotation-action" aria-pressed="false">⌫ Eraser: off</button>',
+'<label for="annotationEraserSize">Eraser thickness <output id="annotationEraserValue">30</output></label><input id="annotationEraserSize" type="range" min="8" max="100" value="30">',
+'<p class="annotation-hint">Draw with your mouse or finger. Finish to move or resize the entire doodle.</p>',
+'<button type="button" id="annotationFinishDoodle" class="annotation-action">✓ Finish doodle</button></div>',
+'<div class="annotation-bottom-actions"><button type="button" id="annotationUndo" class="annotation-action">↶ Undo</button><button type="button" id="annotationClear" class="annotation-action">Clear all</button></div>'
+].join("");
+document.body.append(canvas,hitLayer,selection,toolbar,toggle);
+const ctx=canvas.getContext("2d");if(!ctx){toggle.hidden=true;return;}
+const $=id=>document.getElementById(id);
+const color=$("annotationColor"),input=$("annotationText"),size=$("annotationSize"),font=$("annotationFont");
+const pen=$("annotationPenSize"),eraserSize=$("annotationEraserSize");
+const modeButtons=[...toolbar.querySelectorAll("[data-annotation-mode]")],alignButtons=[...toolbar.querySelectorAll("[data-annotation-align]")];
+const W=()=>Math.max(innerWidth,1),H=()=>Math.max(innerHeight,1);
+const clamp=(v,a,b)=>Math.min(Math.max(v,a),Math.max(a,b));
+const copy=x=>JSON.parse(JSON.stringify(x));
+const faces={caveat:'"Caveat", cursive',arial:'Arial, sans-serif',cutive:'"Cutive Mono", monospace',vibes:'"Great Vibes", cursive'};
+let items=[],draft=null,strokes=[],chosen=null,mode="text",erasing=false,gesture=null,panelDrag=null,clearArmed=false,undoHistory=[];
+let textChanged=false;
+const hotspots=new Map();
+const enabled=()=>document.body.classList.contains("annotation-mode");
+const current=()=>chosen==="draft"?draft:typeof chosen==="number"?items[chosen]:null;
+const object=item=>item&&(item.type==="text"||item.type==="doodle");
+const remember=()=>{undoHistory.push(copy(items));if(undoHistory.length>40)undoHistory.shift();};
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(items));}catch(e){console.warn("Could not save annotations",e);}};
+const point=e=>[clamp(e.clientX/W(),0,1),clamp(e.clientY/H(),0,1)];
+const cssFont=item=>'500 '+(item.size||34)+'px '+(faces[item.font]||faces.caveat);
+function metrics(item){
+  ctx.font=cssFont(item);
+  const lines=(item.text||"").split("\n");
+  return {w:Math.max(24,...lines.map(line=>ctx.measureText(line).width+8)),h:Math.max(20,lines.length*(item.size||34)*1.23+5)};
+}
+function measure(item){const m=metrics(item);item.w=m.w/W();item.h=m.h/H();}
+function normalizeText(item){
+  item.size=clamp(Number(item.size)||34,10,500);
+  item.font=faces[item.font]?item.font:"caveat";
+  item.align=["left","center","right"].includes(item.align)?item.align:"left";
+  item.color=/^#[0-9a-f]{6}$/i.test(item.color||"")?item.color:"#ffffff";
+  item.x=clamp(Number(item.x)||0,0,1);item.y=clamp(Number(item.y)||0,0,1);
+  measure(item);
+}
+function bundle(strokes){
+ const drawn=strokes.filter(s=>!s.erase).flatMap(s=>s.points||[]);
+ if(!drawn.length)return null;
+ const x0=Math.min(...drawn.map(p=>p[0])),x1=Math.max(...drawn.map(p=>p[0]));
+ const y0=Math.min(...drawn.map(p=>p[1])),y1=Math.max(...drawn.map(p=>p[1]));
+ const w=Math.max(.001,x1-x0),h=Math.max(.001,y1-y0);
+ return {type:"doodle",x:x0,y:y0,w,h,baseW:w,strokes:strokes.map(s=>({
+  color:s.color||"#ffffff",width:s.width||8,erase:!!s.erase,
+  points:(s.points||[]).map(p=>[(p[0]-x0)/w,(p[1]-y0)/h])
+ }))};
+}
+try{
+ const saved=JSON.parse(localStorage.getItem(KEY)||"[]");
+ if(Array.isArray(saved))items=saved.flatMap(item=>{
+  if(!item||typeof item!=="object")return [];
+  if(item.type==="text"){normalizeText(item);return [item];}
+  if(item.type==="doodle"&&Array.isArray(item.strokes))return [item];
+  if(item.type==="stroke"&&item.erase)return [item];
+  if(item.type==="stroke"){const x=bundle([item]);return x?[x]:[];}
+  return [];
+ });
+}catch(e){console.warn("Annotations could not be read",e);}
+function drawLine(g,s,transform,scale){
+ const pts=s.points||[];if(!pts.length)return;
+ g.lineWidth=Math.max(1,(s.width||8)*scale);g.lineCap="round";g.lineJoin="round";g.strokeStyle=s.color||"#ffffff";
+ g.beginPath();const p=transform(pts[0]);g.moveTo(p[0],p[1]);
+ if(pts.length===1)g.lineTo(p[0]+.01,p[1]);
+ else for(let i=1;i<pts.length;i++){const q=transform(pts[i]);g.lineTo(q[0],q[1]);}
+ g.stroke();
+}
+function drawDoodle(item){
+ const bw=item.w*W(),bh=item.h*H(),scale=item.baseW?item.w/item.baseW:1;
+ if(!bw||!bh)return;
+ const pad=Math.max(30,50*scale);
+ const c=document.createElement("canvas");
+ c.width=Math.min(4096,Math.ceil(bw+2*pad));c.height=Math.min(4096,Math.ceil(bh+2*pad));
+ const g=c.getContext("2d");if(!g)return;
+ for(const s of item.strokes){
+  g.globalCompositeOperation=s.erase?"destination-out":"source-over";
+  drawLine(g,s,p=>[pad+p[0]*bw,pad+p[1]*bh],scale);
+ }
+ ctx.drawImage(c,item.x*W()-pad,item.y*H()-pad);
+}
+function drawText(item){
+ ctx.save();ctx.font=cssFont(item);ctx.textBaseline="top";ctx.textAlign=item.align||"left";ctx.fillStyle=item.color||"#ffffff";
+ const m=metrics(item),anchor=item.x*W()+(item.align==="center"?m.w/2:item.align==="right"?m.w:0);
+ (item.text||"").split("\n").forEach((line,i)=>ctx.fillText(line,anchor,item.y*H()+i*item.size*1.23));
+ ctx.restore();
+}
+function rect(item){
+ if(item.type==="text")measure(item);
+ return {x:item.x*W(),y:item.y*H(),w:item.w*W(),h:item.h*H()};
+}
+function updateHotspots(){
+ hitLayer.classList.toggle("disabled",(enabled()&&mode==="draw")||document.body.classList.contains("design-mode"));
+ const valid=new Set();
+ items.forEach((item,i)=>{
+  if(!object(item))return;
+  valid.add(i);let node=hotspots.get(i);
+  if(!node){
+   node=document.createElement("div");node.className="annotation-hotspot";node.setAttribute("role","button");
+   node.setAttribute("tabindex","0");node.dataset.index=String(i);
+   node.addEventListener("pointerdown",e=>chooseViaPointer(e,node));
+   node.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();choose(Number(node.dataset.index));}});
+   hitLayer.append(node);hotspots.set(i,node);
   }
-
-  const colorInput = document.getElementById("annotationColor");
-  const sizeInput = document.getElementById("annotationSize");
-  const textInput = document.getElementById("annotationText");
-  const clearButton = document.getElementById("annotationClear");
-  const finishButton = document.getElementById("annotationFinishDoodle");
-  const saveTextButton = document.getElementById("annotationSaveText");
-  const editButton = document.getElementById("annotationEditSelected");
-  const deleteButton = document.getElementById("annotationDeleteSelected");
-  const toolButtons = Array.from(toolbar.querySelectorAll("[data-annotation-mode]"));
-  const resizeHandle = document.getElementById("annotationResize");
-  const vw = () => Math.max(window.innerWidth, 1);
-  const vh = () => Math.max(window.innerHeight, 1);
-  const clamp = (x, low, high) => Math.min(Math.max(x, low), Math.max(low, high));
-
-  let mode = "select";
-  let actions = [];
-  let draft = [];
-  let selectedIndex = -1;
-  let editingIndex = -1;
-  let gesture = null;
-  let clearArmed = false;
-  let history = [];
-  const active = () => document.body.classList.contains("annotation-mode");
-  const deepCopy = (value) => JSON.parse(JSON.stringify(value));
-
-  function rememberUndo() {
-    history.push(deepCopy(actions));
-    if (history.length > 35) history.shift();
+  node.dataset.index=String(i);
+  const r=rect(item),pad=item.type==="doodle"?10:3;
+  Object.assign(node.style,{left:(r.x-pad)+"px",top:(r.y-pad)+"px",width:Math.max(22,r.w+pad*2)+"px",height:Math.max(22,r.h+pad*2)+"px"});
+ });
+ for(const [i,node] of hotspots)if(!valid.has(i)){node.remove();hotspots.delete(i);}
+}
+function updateSelection(){
+ const item=current();
+ const visible=object(item)&&!document.body.classList.contains("design-mode");
+ selection.hidden=!visible;
+ if(!visible)return;
+ const r=rect(item),p=9;
+ Object.assign(selection.style,{left:(r.x-p)+"px",top:(r.y-p)+"px",width:Math.max(30,r.w+p*2)+"px",height:Math.max(30,r.h+p*2)+"px"});
+}
+function redraw(){
+ ctx.clearRect(0,0,W(),H());
+ items.forEach(item=>{if(item.type==="doodle")drawDoodle(item);});
+ ctx.save();
+ for(const stroke of strokes){
+  ctx.globalCompositeOperation=stroke.erase?"destination-out":"source-over";
+  drawLine(ctx,stroke,p=>[p[0]*W(),p[1]*H()],1);
+ }
+ for(const s of items)if(s.type==="stroke"&&s.erase){
+  ctx.globalCompositeOperation="destination-out";
+  drawLine(ctx,s,p=>[p[0]*W(),p[1]*H()],1);
+ }
+ ctx.restore();
+ items.forEach(item=>{if(item.type==="text")drawText(item);});
+ if(draft&&draft.text)drawText(draft);
+ updateHotspots();updateSelection();
+}
+function resize(){
+ const dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(W()*dpr);canvas.height=Math.round(H()*dpr);
+ ctx.setTransform(dpr,0,0,dpr,0,0);
+ items.forEach(item=>{if(item.type==="text")measure(item);});if(draft)measure(draft);
+ redraw();
+}
+function syncTextControls(item){
+ color.value=item.color||"#ffffff";
+ const swatch=$("annotationColorButtonSwatch");if(swatch)swatch.style.background=color.value;
+ input.value=item.text||"";size.value=String(clamp(item.size||34,14,100));$("annotationSizeValue").value=size.value;
+ font.value=item.font||"caveat";
+ alignButtons.forEach(b=>{
+  const yes=b.dataset.annotationAlign===(item.align||"left");
+  b.classList.toggle("selected",yes);b.setAttribute("aria-pressed",String(yes));
+ });
+}
+function choose(i){
+ if(chosen==="draft")commitText();
+ chosen=i;textChanged=false;
+ if(items[i]?.type==="text"){syncTextControls(items[i]);if(enabled())setMode("text",true);}
+ redraw();
+}
+function chooseViaPointer(e,node){
+ if(enabled()&&mode==="draw")return;
+ const i=Number(node.dataset.index);if(!object(items[i]))return;
+ if(chosen!==i)choose(i);
+ startObjectGesture(e,node,"move");
+}
+function startObjectGesture(e,target,kind){
+ const item=current();if(gesture||!object(item))return;
+ e.preventDefault();e.stopPropagation();
+ gesture={pointer:e.pointerId,kind,x:e.clientX,y:e.clientY,original:{x:item.x,y:item.y,w:item.w,h:item.h,size:item.size},
+ before:chosen==="draft"?null:copy(items),dirty:false};
+ target.setPointerCapture(e.pointerId);
+}
+selection.addEventListener("pointerdown",e=>{
+ if(e.target.id==="annotationResize"||e.target.id==="annotationDeleteSelected")return;
+ startObjectGesture(e,selection,"move");
+});
+$("annotationResize").addEventListener("pointerdown",e=>startObjectGesture(e,$("annotationResize"),"resize"));
+$("annotationDeleteSelected").addEventListener("click",e=>{
+ e.preventDefault();e.stopPropagation();
+ if(chosen==="draft")draft=null;
+ else if(typeof chosen==="number"&&items[chosen]){remember();items.splice(chosen,1);save();}
+ chosen=null;input.value="";redraw();
+});
+function placeText(item){
+ const panel=toolbar.getBoundingClientRect(),r=rect(item);
+ let x=W()*.43,y=H()*.42;
+ if(!toolbar.hidden&&x<panel.right+18&&x+r.w>panel.left-18&&y<panel.bottom+18&&y+r.h>panel.top-18){
+  if(panel.right<W()*.72)x=panel.right+25;
+  else if(panel.left>r.w+20)x=panel.left-r.w-20;
+  else y=panel.bottom+22;
+ }
+ item.x=clamp(x/W(),0,Math.max(0,1-item.w));item.y=clamp(y/H(),0,Math.max(0,1-item.h));
+}
+function commitText(){
+ if(!draft)return;
+ if(draft.text.trim()){remember();items.push(copy(draft));chosen=items.length-1;save();}
+ else if(chosen==="draft")chosen=null;
+ draft=null;
+}
+function activeAlign(){return alignButtons.find(b=>b.classList.contains("selected"))?.dataset.annotationAlign||"left";}
+function onTextInput(){
+ const text=input.value.slice(0,500),item=current();
+ if(item&&item.type==="text"){
+  if(chosen!=="draft"&&!textChanged){remember();textChanged=true;}
+  item.text=text;measure(item);
+  item.x=clamp(item.x,0,Math.max(0,1-item.w));item.y=clamp(item.y,0,Math.max(0,1-item.h));
+  if(chosen!=="draft")save();
+ }else if(text.trim()){
+  draft={type:"text",text,x:0,y:0,w:0,h:0,color:color.value,size:Number(size.value),font:font.value,align:activeAlign()};
+  measure(draft);placeText(draft);chosen="draft";
+ }
+ redraw();
+}
+input.addEventListener("input",onTextInput);
+function applyTextControls(){
+ $("annotationSizeValue").value=size.value;const item=current();
+ if(!item||item.type!=="text")return;
+ if(chosen!=="draft"&&!textChanged){remember();textChanged=true;}
+ item.color=color.value;item.size=Number(size.value);item.font=font.value;item.align=activeAlign();
+ measure(item);item.x=clamp(item.x,0,Math.max(0,1-item.w));item.y=clamp(item.y,0,Math.max(0,1-item.h));
+ if(chosen!=="draft")save();
+ redraw();
+}
+size.addEventListener("input",applyTextControls);font.addEventListener("change",applyTextControls);
+color.addEventListener("input",()=>{if(mode==="text")applyTextControls();});
+alignButtons.forEach(b=>b.addEventListener("click",()=>{
+ alignButtons.forEach(x=>{const yes=x===b;x.classList.toggle("selected",yes);x.setAttribute("aria-pressed",String(yes));});
+ applyTextControls();
+}));
+function clearTextEditor(){input.value="";draft=null;chosen=null;textChanged=false;redraw();}
+$("annotationSaveText").addEventListener("click",()=>{commitText();if(chosen!=="draft")save();clearTextEditor();});
+$("annotationNewText").addEventListener("click",()=>{commitText();clearTextEditor();input.focus();});
+function finishDrawing(){
+ if(!strokes.length)return;
+ const b=bundle(strokes);strokes=[];
+ if(b){remember();items.push(b);chosen=items.length-1;save();}
+ redraw();
+}
+function setMode(next,keep=false){
+ if(mode==="draw"&&next!=="draw")finishDrawing();
+ if(mode==="text"&&next!=="text")commitText();
+ mode=next;if(!keep)chosen=null;
+ $("annotationTextControls").hidden=next!=="text";$("annotationDrawControls").hidden=next!=="draw";
+ modeButtons.forEach(b=>{const yes=b.dataset.annotationMode===next;b.classList.toggle("selected",yes);b.setAttribute("aria-pressed",String(yes));});
+ if(next==="text"&&enabled()&&!keep)input.focus();
+ redraw();
+}
+modeButtons.forEach(b=>b.addEventListener("click",()=>setMode(b.dataset.annotationMode)));
+function show(show){
+ if(!show){commitText();finishDrawing();chosen=null;}
+ if(show){if(document.body.classList.contains("design-mode"))$("doneDesignButton")?.click();$("settingsPanel")?.classList.remove("show");}
+ document.body.classList.toggle("annotation-mode",show);toolbar.hidden=!show;
+ toggle.setAttribute("aria-expanded",String(show));
+ redraw();
+}
+toggle.addEventListener("click",()=>show(!enabled()));
+$("annotationDone").addEventListener("click",()=>show(false));
+pen.addEventListener("input",()=>{$("annotationPenValue").value=pen.value;});
+eraserSize.addEventListener("input",()=>{$("annotationEraserValue").value=eraserSize.value;});
+$("annotationEraser").addEventListener("click",()=>{
+ erasing=!erasing;$("annotationEraser").textContent=erasing?"⌫ Eraser: on":"⌫ Eraser: off";
+ $("annotationEraser").classList.toggle("selected",erasing);$("annotationEraser").setAttribute("aria-pressed",String(erasing));
+});
+$("annotationFinishDoodle").addEventListener("click",()=>{
+ finishDrawing();erasing=false;$("annotationEraser").textContent="⌫ Eraser: off";$("annotationEraser").classList.remove("selected");
+});
+canvas.addEventListener("pointerdown",e=>{
+ if(!enabled()||mode!=="draw"||gesture)return;
+ e.preventDefault();
+ const s={type:"stroke",erase:erasing,color:color.value,width:Number(erasing?eraserSize.value:pen.value),points:[point(e)]};
+ if(!erasing)strokes.push(s);
+ gesture={pointer:e.pointerId,kind:"draw",stroke:s,before:erasing?copy(items):null,dirty:false};
+ canvas.setPointerCapture(e.pointerId);redraw();
+});
+const bar=$("annotationDragBar");
+bar.addEventListener("pointerdown",e=>{
+ if(e.target.closest("button"))return;
+ const r=toolbar.getBoundingClientRect();
+ panelDrag={pointer:e.pointerId,x:e.clientX,y:e.clientY,left:r.left,top:r.top};
+ bar.setPointerCapture(e.pointerId);e.preventDefault();
+});
+function positionPanel(x,y){
+ const r=toolbar.getBoundingClientRect();
+ toolbar.style.left=clamp(x,0,Math.max(0,W()-r.width))+"px";
+ toolbar.style.top=clamp(y,0,Math.max(0,H()-r.height))+"px";
+ toolbar.style.bottom="auto";
+}
+try{
+ const p=JSON.parse(localStorage.getItem(PANEL_KEY)||"null");
+ if(p&&Number.isFinite(p.x)&&Number.isFinite(p.y)){
+  toolbar.style.left=clamp(p.x,0,1)*W()+"px";toolbar.style.top=clamp(p.y,0,1)*H()+"px";toolbar.style.bottom="auto";
+ }
+}catch(e){}
+window.addEventListener("pointermove",e=>{
+ if(panelDrag&&panelDrag.pointer===e.pointerId){
+  e.preventDefault();positionPanel(panelDrag.left+e.clientX-panelDrag.x,panelDrag.top+e.clientY-panelDrag.y);return;
+ }
+ if(!gesture||gesture.pointer!==e.pointerId)return;
+ e.preventDefault();const g=gesture;
+ if(g.kind==="draw"){g.stroke.points.push(point(e));g.dirty=true;}
+ else{
+  const item=current();if(!item)return;
+  const dx=e.clientX-g.x,dy=e.clientY-g.y;
+  if(g.kind==="move"){
+   item.x=clamp(g.original.x+dx/W(),0,Math.max(0,1-item.w));
+   item.y=clamp(g.original.y+dy/H(),0,Math.max(0,1-item.h));
+  }else{
+   const baseline=Math.max(40,g.original.w*W()+g.original.h*H());
+   let scale=clamp(1+(dx+dy)/baseline,.25,7);
+   scale=Math.min(scale,(1-item.x)/Math.max(g.original.w,.0001),(1-item.y)/Math.max(g.original.h,.0001));
+   scale=Math.max(.1,scale);
+   item.w=g.original.w*scale;item.h=g.original.h*scale;
+   if(item.type==="text"){
+    item.size=clamp(g.original.size*scale,8,500);measure(item);
+    item.x=clamp(item.x,0,Math.max(0,1-item.w));item.y=clamp(item.y,0,Math.max(0,1-item.h));
+    if(enabled()&&mode==="text"){$("annotationSizeValue").value=Math.round(item.size);size.value=clamp(item.size,14,100);}
+   }
   }
-
-  function persist() {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(actions));
-    } catch (error) {
-      console.warn("Drawing changes could not be saved.", error);
-    }
+  g.dirty=g.dirty||Math.abs(dx)+Math.abs(dy)>1;
+ }
+ redraw();
+},{passive:false});
+function endPointer(e){
+ if(panelDrag&&panelDrag.pointer===e.pointerId){
+  panelDrag=null;const r=toolbar.getBoundingClientRect();
+  try{localStorage.setItem(PANEL_KEY,JSON.stringify({x:r.left/W(),y:r.top/H()}));}catch(_){}
+ }
+ if(!gesture||gesture.pointer!==e.pointerId)return;
+ const g=gesture;gesture=null;
+ if(g.kind==="draw"){
+  if(g.stroke.erase){
+   let touched=false;
+   for(const obj of items)if(obj.type==="doodle"&&obj.w>0&&obj.h>0){
+    obj.strokes.push({erase:true,color:g.stroke.color,width:g.stroke.width,points:g.stroke.points.map(p=>[(p[0]-obj.x)/obj.w,(p[1]-obj.y)/obj.h])});
+    touched=true;
+   }
+   if(strokes.some(s=>!s.erase))strokes.push(copy(g.stroke));
+   if(touched){undoHistory.push(g.before);if(undoHistory.length>40)undoHistory.shift();save();}
   }
-
-  // Each drawing is one object. Relative stroke coordinates keep drawings
-  // attached to their movable and resizable bounding rectangle.
-  function doodleFromStrokes(strokes) {
-    if (!strokes.length) return null;
-    const all = strokes.flatMap((stroke) => stroke.points || []);
-    if (!all.length) return null;
-    const minX = clamp(Math.min(...all.map(p => p[0])), 0, 1);
-    const maxX = clamp(Math.max(...all.map(p => p[0])), 0, 1);
-    const minY = clamp(Math.min(...all.map(p => p[1])), 0, 1);
-    const maxY = clamp(Math.max(...all.map(p => p[1])), 0, 1);
-    const w = Math.max(0.001, maxX - minX);
-    const h = Math.max(0.001, maxY - minY);
-    return {
-      type: "doodle", x: minX, y: minY, w, h, baseW: w,
-      strokes: strokes.map(stroke => ({
-        color: stroke.color || "#ffffff",
-        width: Number(stroke.width) || 8,
-        points: stroke.points.map(p => [(p[0] - minX) / w, (p[1] - minY) / h])
-      }))
-    };
-  }
-
-  function fontFor(item) {
-    return '500 ' + (item.size || 34) + 'px "Caveat", cursive';
-  }
-
-  function textDimensions(text, size) {
-    ctx.font = '500 ' + size + 'px "Caveat", cursive';
-    const lines = (text || "").split("\n");
-    return {
-      w: Math.max(30, ...lines.map(line => ctx.measureText(line).width + 10)),
-      h: Math.max(size * 1.25, size * 1.2 * lines.length + 6)
-    };
-  }
-
-  function normalizeText(item) {
-    const size = clamp(Number(item.size) || 34, 8, 350);
-    const dims = textDimensions(item.text || "", size);
-    return {
-      type: "text",
-      text: String(item.text || "").slice(0, 500),
-      x: clamp(Number(item.x) || 0, 0, 1),
-      y: clamp(Number(item.y) || 0, 0, 1),
-      w: Number(item.w) > 0 ? Number(item.w) : dims.w / vw(),
-      h: Number(item.h) > 0 ? Number(item.h) : dims.h / vh(),
-      size,
-      color: item.color || "#ffffff"
-    };
-  }
-
-  try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-    if (Array.isArray(saved)) {
-      actions = saved.flatMap(function (item) {
-        if (!item || typeof item !== "object") return [];
-        if (item.type === "text") return [normalizeText(item)];
-        if (item.type === "doodle" && Array.isArray(item.strokes)) return [item];
-        if (item.type === "stroke" && Array.isArray(item.points)) {
-          // Preserve old eraser operations in place, and migrate old drawn lines.
-          if (item.erase) return [item];
-          const group = doodleFromStrokes([item]);
-          return group ? [group] : [];
-        }
-        return [];
-      });
-    }
-  } catch (error) {
-    console.warn("Saved annotations could not be loaded.", error);
-  }
-
-  function paintStroke(stroke, pointToPixel, scale) {
-    if (!stroke.points || !stroke.points.length) return;
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
-    ctx.strokeStyle = stroke.color || "#ffffff";
-    ctx.lineWidth = Math.max(1, (Number(stroke.width) || 8) * scale);
-    ctx.beginPath();
-    const p = pointToPixel(stroke.points[0]);
-    ctx.moveTo(p[0], p[1]);
-    if (stroke.points.length === 1) {
-      ctx.lineTo(p[0] + 0.01, p[1]);
-    } else {
-      for (let i = 1; i < stroke.points.length; i++) {
-        const q = pointToPixel(stroke.points[i]);
-        ctx.lineTo(q[0], q[1]);
-      }
-    }
-    ctx.stroke();
-  }
-
-  function renderDoodle(item) {
-    const scale = item.baseW > 0 ? item.w / item.baseW : 1;
-    item.strokes.forEach(stroke => {
-      paintStroke(stroke, p => [
-        (item.x + p[0] * item.w) * vw(),
-        (item.y + p[1] * item.h) * vh()
-      ], scale);
-    });
-  }
-
-  function renderText(item) {
-    ctx.font = fontFor(item);
-    ctx.textBaseline = "top";
-    ctx.fillStyle = item.color || "#ffffff";
-    const step = item.size * 1.2;
-    (item.text || "").split("\n").forEach((line, i) => {
-      ctx.fillText(line, item.x * vw(), item.y * vh() + step * i);
-    });
-  }
-
-  function renderLegacyEraser(item) {
-    ctx.save();
-    ctx.globalCompositeOperation = "destination-out";
-    paintStroke(item, p => [p[0] * vw(), p[1] * vh()], 1);
-    ctx.restore();
-  }
-
-  function rectFor(item) {
-    return { left: item.x * vw(), top: item.y * vh(),
-      width: item.w * vw(), height: item.h * vh() };
-  }
-
-  function updateSelection() {
-    const item = actions[selectedIndex];
-    const visible = active() && mode === "select" &&
-      item && (item.type === "text" || item.type === "doodle");
-    selection.hidden = !visible;
-    editButton.hidden = !(visible && item.type === "text");
-    deleteButton.hidden = !visible;
-    if (!visible) return;
-    const r = rectFor(item);
-    const pad = 10;
-    selection.style.left = (r.left - pad) + "px";
-    selection.style.top = (r.top - pad) + "px";
-    selection.style.width = Math.max(26, r.width + pad * 2) + "px";
-    selection.style.height = Math.max(26, r.height + pad * 2) + "px";
-  }
-
-  function redraw() {
-    ctx.clearRect(0, 0, vw(), vh());
-    actions.forEach(item => {
-      if (item.type === "doodle") renderDoodle(item);
-      else if (item.type === "text") renderText(item);
-      else if (item.type === "stroke" && item.erase) renderLegacyEraser(item);
-    });
-    draft.forEach(stroke => paintStroke(stroke,
-      p => [p[0] * vw(), p[1] * vh()], 1));
-    updateSelection();
-  }
-
-  function resizeCanvas() {
-    const ratio = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = Math.round(vw() * ratio);
-    canvas.height = Math.round(vh() * ratio);
-    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-    redraw();
-  }
-
-  function pointFrom(event) {
-    return [clamp(event.clientX / vw(), 0, 1), clamp(event.clientY / vh(), 0, 1)];
-  }
-
-  function findAt(x, y) {
-    for (let i = actions.length - 1; i >= 0; i--) {
-      const item = actions[i];
-      if (item.type !== "doodle" && item.type !== "text") continue;
-      const rect = rectFor(item);
-      const pad = Math.max(9, item.type === "doodle" ? 14 : 6);
-      if (x >= rect.left - pad && x <= rect.left + Math.max(15, rect.width) + pad &&
-          y >= rect.top - pad && y <= rect.top + Math.max(15, rect.height) + pad) return i;
-    }
-    return -1;
-  }
-
-  function disarmClear() {
-    clearArmed = false;
-    clearButton.textContent = "Clear all";
-    clearButton.classList.remove("warn");
-  }
-
-  function updateDraftUI() {
-    document.getElementById("annotationDraftActions").hidden = !draft.length;
-    document.getElementById("annotationDrawHelp").hidden = mode === "text";
-  }
-
-  function finishDoodle() {
-    if (!draft.length) return;
-    const group = doodleFromStrokes(draft);
-    draft = [];
-    if (group) {
-      rememberUndo();
-      actions.push(group);
-      selectedIndex = actions.length - 1;
-      persist();
-    }
-    updateDraftUI();
-    redraw();
-  }
-
-  function setMode(next) {
-    if (mode === "draw" && next !== "draw") finishDoodle();
-    mode = next;
-    if (next !== "text") editingIndex = -1;
-    toolButtons.forEach(button => {
-      const selected = button.dataset.annotationMode === next;
-      button.classList.toggle("selected", selected);
-      button.setAttribute("aria-pressed", String(selected));
-    });
-    toolbar.classList.toggle("text-mode", next === "text");
-    toolbar.classList.toggle("select-mode", next === "select");
-    saveTextButton.hidden = !(next === "text" && editingIndex >= 0);
-    if (next === "text") textInput.focus();
-    disarmClear();
-    updateDraftUI();
-    updateSelection();
-  }
-
-  function showTools(show) {
-    if (!show && mode === "draw") finishDoodle();
-    if (show) {
-      if (document.body.classList.contains("design-mode")) {
-        document.getElementById("doneDesignButton").click();
-      }
-      document.getElementById("settingsPanel").classList.remove("show");
-    }
-    document.body.classList.toggle("annotation-mode", show);
-    toolbar.hidden = !show;
-    toggle.setAttribute("aria-expanded", String(show));
-    toggle.setAttribute("aria-label", show ? "Close drawing tools" : "Draw or write on screen");
-    if (!show) { selectedIndex = -1; setMode("select"); }
-    disarmClear();
-    updateSelection();
-  }
-
-  function createText(point) {
-    const message = textInput.value.trim();
-    if (!message) { textInput.focus(); return; }
-    const size = 18 + Number(sizeInput.value) * 2;
-    const dimensions = textDimensions(message, size);
-    const item = {
-      type: "text", text: message, x: point[0], y: point[1],
-      w: dimensions.w / vw(), h: dimensions.h / vh(),
-      size, color: colorInput.value
-    };
-    item.x = clamp(item.x, 0, Math.max(0, 1 - item.w));
-    item.y = clamp(item.y, 0, Math.max(0, 1 - item.h));
-    rememberUndo();
-    actions.push(item);
-    selectedIndex = actions.length - 1;
-    textInput.value = "";
-    editingIndex = -1;
-    persist();
-    setMode("select");
-    redraw();
-  }
-
-  function startObjectMove(event, source, kind) {
-    const item = actions[selectedIndex];
-    if (!item || (item.type !== "doodle" && item.type !== "text")) return;
-    if (gesture) return;
-    event.preventDefault();
-    event.stopPropagation();
-    const original = { x:item.x, y:item.y, w:item.w, h:item.h, size:item.size };
-    gesture = { pointerId:event.pointerId, kind, startX:event.clientX,
-      startY:event.clientY, original, changed:false, before:deepCopy(actions) };
-    source.setPointerCapture(event.pointerId);
-  }
-
-  function completeGesture(event) {
-    if (!gesture || event.pointerId !== gesture.pointerId) return;
-    const previous = gesture;
-    gesture = null;
-    if (previous.changed) {
-      history.push(previous.before);
-      if (history.length > 35) history.shift();
-      persist();
-    }
-    redraw();
-  }
-
-  toggle.addEventListener("click", () => showTools(!active()));
-  document.getElementById("annotationDone").addEventListener("click", () => showTools(false));
-  toolButtons.forEach(button => {
-    button.addEventListener("click", () => setMode(button.dataset.annotationMode));
-  });
-  finishButton.addEventListener("click", () => { finishDoodle(); setMode("select"); redraw(); });
-
-  selection.addEventListener("pointerdown", event => {
-    if (event.target === resizeHandle) return;
-    if (mode === "select") startObjectMove(event, selection, "move");
-  });
-  resizeHandle.addEventListener("pointerdown", event => startObjectMove(event, resizeHandle, "resize"));
-
-  editButton.addEventListener("click", () => {
-    if (!actions[selectedIndex] || actions[selectedIndex].type !== "text") return;
-    const index = selectedIndex;
-    const item = actions[index];
-    setMode("text");
-    editingIndex = index;
-    textInput.value = item.text;
-    saveTextButton.hidden = false;
-    document.getElementById("annotationTextHelp").textContent =
-      "Edit the words, then tap Save text changes.";
-    textInput.focus();
-  });
-  saveTextButton.addEventListener("click", () => {
-    const item = actions[editingIndex];
-    if (!item || item.type !== "text") return;
-    const message = textInput.value.trim();
-    if (!message) { textInput.focus(); return; }
-    rememberUndo();
-    item.text = message;
-    const dims = textDimensions(message, item.size);
-    item.w = dims.w / vw();
-    item.h = dims.h / vh();
-    item.x = clamp(item.x, 0, Math.max(0, 1 - item.w));
-    item.y = clamp(item.y, 0, Math.max(0, 1 - item.h));
-    selectedIndex = editingIndex;
-    editingIndex = -1;
-    textInput.value = "";
-    document.getElementById("annotationTextHelp").textContent =
-      "Type a message, then tap the screen to place it.";
-    persist();
-    setMode("select");
-    redraw();
-  });
-
-  deleteButton.addEventListener("click", () => {
-    if (selectedIndex < 0 || !actions[selectedIndex]) return;
-    rememberUndo();
-    actions.splice(selectedIndex, 1);
-    selectedIndex = -1;
-    persist();
-    redraw();
-  });
-
-  function undo() {
-    if (draft.length) {
-      draft.pop();
-      updateDraftUI();
-    } else if (history.length) {
-      actions = history.pop();
-      selectedIndex = -1;
-      editingIndex = -1;
-      persist();
-    } else if (actions.length) {
-      // Still allow undoing an annotation created in a prior session.
-      actions.pop();
-      selectedIndex = -1;
-      persist();
-    }
-    redraw();
-    disarmClear();
-  }
-
-  document.getElementById("annotationUndo").addEventListener("click", undo);
-  clearButton.addEventListener("click", () => {
-    if (!clearArmed) {
-      clearArmed = true;
-      clearButton.textContent = "Clear all?";
-      clearButton.classList.add("warn");
-      return;
-    }
-    rememberUndo();
-    actions = [];
-    draft = [];
-    selectedIndex = -1;
-    persist();
-    redraw();
-    updateDraftUI();
-    disarmClear();
-  });
-
-  canvas.addEventListener("pointerdown", event => {
-    if (!active() || gesture) return;
-    event.preventDefault();
-    disarmClear();
-    const point = pointFrom(event);
-    if (mode === "select") {
-      selectedIndex = findAt(event.clientX, event.clientY);
-      if (selectedIndex !== -1) startObjectMove(event, canvas, "move");
-      redraw();
-      return;
-    }
-    if (mode === "text") { createText(point); return; }
-    const stroke = {
-      type:"stroke", erase: mode === "erase",
-      color: colorInput.value,
-      width: Number(sizeInput.value) * (mode === "erase" ? 3 : 1),
-      points: [point]
-    };
-    if (mode === "draw") {
-      draft.push(stroke);
-      updateDraftUI();
-    } else {
-      rememberUndo();
-      actions.push(stroke);
-      persist();
-    }
-    gesture = { pointerId:event.pointerId, kind:"paint", stroke, changed:false };
-    canvas.setPointerCapture(event.pointerId);
-    redraw();
-  });
-
-  window.addEventListener("pointermove", event => {
-    if (!gesture || gesture.pointerId !== event.pointerId) return;
-    const g = gesture;
-    event.preventDefault();
-    if (g.kind === "paint") {
-      g.stroke.points.push(pointFrom(event));
-      g.changed = true;
-    } else {
-      const item = actions[selectedIndex];
-      if (!item) return;
-      const dx = event.clientX - g.startX;
-      const dy = event.clientY - g.startY;
-      if (g.kind === "move") {
-        item.x = clamp(g.original.x + dx / vw(), 0, 1 - item.w);
-        item.y = clamp(g.original.y + dy / vh(), 0, 1 - item.h);
-      } else {
-        const rectW = Math.max(35, g.original.w * vw());
-        const rectH = Math.max(35, g.original.h * vh());
-        const factor = clamp(1 + (dx + dy) / (rectW + rectH), 0.25, 8);
-        const maximum = Math.min(
-          8,
-          (1 - item.x) / Math.max(0.001, g.original.w),
-          (1 - item.y) / Math.max(0.001, g.original.h)
-        );
-        const finalScale = clamp(factor, 0.25, Math.max(0.25, maximum));
-        item.w = g.original.w * finalScale;
-        item.h = g.original.h * finalScale;
-        if (item.type === "text") item.size = g.original.size * finalScale;
-      }
-      g.changed = g.changed || Math.abs(dx) + Math.abs(dy) > 1;
-    }
-    redraw();
-  }, { passive:false });
-
-  window.addEventListener("pointerup", event => {
-    if (!gesture || event.pointerId !== gesture.pointerId) return;
-    if (gesture.kind === "paint") {
-      if (gesture.stroke.erase) persist();
-      gesture = null;
-      redraw();
-    } else completeGesture(event);
-  });
-  window.addEventListener("pointercancel", event => {
-    if (!gesture || event.pointerId !== gesture.pointerId) return;
-    if (gesture.kind === "paint") {
-      if (gesture.stroke.erase) persist();
-      gesture = null;
-      redraw();
-    } else completeGesture(event);
-  });
-
-  document.addEventListener("keydown", event => {
-    if (!active()) return;
-    if (event.key === "Escape") { showTools(false); return; }
-    const input = event.target.closest && event.target.closest("input, textarea");
-    if (!input && (event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "z") {
-      event.preventDefault();
-      undo();
-    }
-    if (!input && (event.key === "Delete" || event.key === "Backspace") &&
-        selectedIndex >= 0 && mode === "select") {
-      event.preventDefault();
-      deleteButton.click();
-    }
-  });
-
-  window.addEventListener("resize", resizeCanvas);
-  window.videoClockAnnotations = { close: () => showTools(false) };
-  resizeCanvas();
-  setMode("select");
+ }else if(g.dirty&&chosen!=="draft"){
+  undoHistory.push(g.before);if(undoHistory.length>40)undoHistory.shift();save();
+ }
+ redraw();
+}
+window.addEventListener("pointerup",endPointer);window.addEventListener("pointercancel",endPointer);
+function undo(){
+ if(strokes.length){strokes.pop();redraw();return;}
+ if(undoHistory.length){items=undoHistory.pop();draft=null;chosen=null;input.value="";save();redraw();return;}
+ if(items.length){items.pop();chosen=null;save();redraw();}
+}
+$("annotationUndo").addEventListener("click",undo);
+$("annotationClear").addEventListener("click",()=>{
+ if(!clearArmed){clearArmed=true;$("annotationClear").textContent="Clear all?";return;}
+ remember();items=[];draft=null;strokes=[];chosen=null;input.value="";save();redraw();
+ clearArmed=false;$("annotationClear").textContent="Clear all";
+});
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape"){if(enabled())show(false);else{chosen=null;redraw();}return;}
+ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="z"&&enabled()&&!e.target.closest?.("textarea,input")){e.preventDefault();undo();}
+ if((e.key==="Delete"||e.key==="Backspace")&&chosen!==null&&!e.target.closest?.("textarea,input")&&!selection.hidden){
+  e.preventDefault();$("annotationDeleteSelected").click();
+ }
+});
+window.addEventListener("resize",()=>{
+ if(toolbar.style.top)positionPanel(parseFloat(toolbar.style.left)||0,parseFloat(toolbar.style.top)||0);
+ resize();
+});
+window.videoClockAnnotations={close:()=>show(false)};
+resize();setMode("text");
 })();
