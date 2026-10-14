@@ -116,7 +116,7 @@ function rect(item){
  return {x:item.x*W(),y:item.y*H(),w:item.w*W(),h:item.h*H()};
 }
 function updateHotspots(){
- hitLayer.classList.toggle("disabled",(enabled()&&mode==="draw")||document.body.classList.contains("design-mode"));
+ hitLayer.classList.toggle("disabled",enabled()&&mode==="draw");
  const valid=new Set();
  items.forEach((item,i)=>{
   if(!object(item))return;
@@ -136,7 +136,7 @@ function updateHotspots(){
 }
 function updateSelection(){
  const item=current();
- const visible=object(item)&&!document.body.classList.contains("design-mode")&&!(enabled()&&mode==="draw");
+ const visible=object(item)&&!(enabled()&&mode==="draw");
  selection.hidden=!visible;
  if(!visible)return;
  const r=rect(item),p=9;
@@ -390,6 +390,23 @@ window.addEventListener("resize",()=>{
  if(toolbar.style.top)positionPanel(parseFloat(toolbar.style.left)||0,parseFloat(toolbar.style.top)||0);
  resize();
 });
-window.videoClockAnnotations={close:()=>show(false)};
+// Design Layout also lets saved annotations be selected, moved and resized.
+ // The main page's Design buttons toggle the mode before these callbacks run.
+ $("designButton")?.addEventListener("click",()=>{
+  chosen=null;
+  redraw();
+ });
+ $("doneDesignButton")?.addEventListener("click",()=>{
+  chosen=null;
+  redraw();
+ });
+ // Tapping an empty area releases the previous selection.
+ document.addEventListener("pointerdown",e=>{
+  if(!document.body.classList.contains("design-mode")||chosen===null)return;
+  if(e.target.closest?.("#annotationSelection, .annotation-hotspot, #designBanner"))return;
+  chosen=null;
+  redraw();
+ });
+ window.videoClockAnnotations={close:()=>show(false)};
 resize();setMode("text");
 })();
