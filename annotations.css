@@ -307,8 +307,8 @@ body.annotation-mode #annotationToggle { background: white; color: black; }
   pointer-events: auto;
   background: transparent;
 }
-#annotationHitLayer.disabled .annotation-hotspot,
-body.design-mode .annotation-hotspot { pointer-events: none; }
+#annotationHitLayer.disabled .annotation-hotspot { pointer-events: none; }
+body.design-mode .annotation-hotspot { pointer-events: auto; }
 body.annotation-mode #annotationCanvas { pointer-events: none; }
 body.annotation-mode.annotation-draw-mode #annotationCanvas {
   pointer-events: auto;
@@ -344,8 +344,10 @@ body.annotation-mode.annotation-draw-mode #annotationCanvas {
   touch-action: manipulation;
 }
 #annotationResize { right: -14px; bottom: -14px; }
-body.design-mode #annotationHitLayer,
-body.design-mode #annotationSelection { pointer-events: none; }
+/* Annotations stay interactive in Design Layout, without opening drawing tools. */
+body.design-mode #annotationHitLayer { pointer-events: none; }
+body.design-mode #annotationHitLayer .annotation-hotspot { pointer-events: auto; }
+body.design-mode #annotationSelection:not([hidden]) { pointer-events: auto; }
 @media (max-width: 480px) {
   #annotationToolbar { max-height: calc(100dvh - 88px); }
   .annotation-tool-row { gap: 7px; }
