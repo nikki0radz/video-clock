@@ -400,13 +400,16 @@ window.addEventListener("resize",()=>{
   chosen=null;
   redraw();
  });
- // Tapping an empty area releases the previous selection.
+ // Deselect on any outside tap, including while editing Design Layout.
+ // Capture the pointer event before the layout drag handlers can stop bubbling.
  document.addEventListener("pointerdown",e=>{
-  if(!document.body.classList.contains("design-mode")||chosen===null)return;
-  if(e.target.closest?.("#annotationSelection, .annotation-hotspot, #designBanner"))return;
+  if(chosen===null||gesture)return;
+  if(e.target.closest?.("#annotationSelection, .annotation-hotspot"))return;
+  // Keep text formatting controls usable while editing a selected object.
+  if(enabled()&&e.target.closest?.("#annotationToolbar, .vc-colour-backdrop"))return;
   chosen=null;
   redraw();
- });
+ },true);
  window.videoClockAnnotations={close:()=>show(false)};
 resize();setMode("text");
 })();
