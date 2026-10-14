@@ -136,7 +136,7 @@ function updateHotspots(){
 }
 function updateSelection(){
  const item=current();
- const visible=object(item)&&!document.body.classList.contains("design-mode");
+ const visible=object(item)&&!document.body.classList.contains("design-mode")&&!(enabled()&&mode==="draw");
  selection.hidden=!visible;
  if(!visible)return;
  const r=rect(item),p=9;
@@ -263,7 +263,8 @@ function finishDrawing(){
 function setMode(next,keep=false){
  if(mode==="draw"&&next!=="draw")finishDrawing();
  if(mode==="text"&&next!=="text")commitText();
- mode=next;if(!keep)chosen=null;
+ mode=next;document.body.classList.toggle("annotation-draw-mode",next==="draw");if(!keep)chosen=null;
+ if(next==="draw")input.value="";
  $("annotationTextControls").hidden=next!=="text";$("annotationDrawControls").hidden=next!=="draw";
  modeButtons.forEach(b=>{const yes=b.dataset.annotationMode===next;b.classList.toggle("selected",yes);b.setAttribute("aria-pressed",String(yes));});
  if(next==="text"&&enabled()&&!keep)input.focus();
@@ -271,7 +272,7 @@ function setMode(next,keep=false){
 }
 modeButtons.forEach(b=>b.addEventListener("click",()=>setMode(b.dataset.annotationMode)));
 function show(show){
- if(!show){commitText();finishDrawing();chosen=null;}
+ if(!show){commitText();finishDrawing();chosen=null;input.value="";}
  if(show){if(document.body.classList.contains("design-mode"))$("doneDesignButton")?.click();$("settingsPanel")?.classList.remove("show");}
  document.body.classList.toggle("annotation-mode",show);toolbar.hidden=!show;
  toggle.setAttribute("aria-expanded",String(show));
