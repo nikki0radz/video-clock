@@ -196,3 +196,140 @@ body.annotation-mode #annotationToggle { background: white; color: black; }
   .annotation-tool-row { gap: 5px; }
   .annotation-tool { padding: 7px 3px; font-size: 12px; }
 }
+
+
+/* v3: separate live text / draw controls, draggable panel and object handles */
+.annotation-tool-row {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.annotation-tool { font-size: 14px; }
+#annotationToolbar { overscroll-behavior: contain; }
+#annotationDragBar {
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  padding: 3px 0 7px;
+}
+#annotationDragBar:active { cursor: grabbing; }
+#annotationDone { touch-action: manipulation; cursor: pointer; }
+.annotation-control-section {
+  display: grid;
+  gap: 9px;
+  margin-bottom: 14px;
+}
+.annotation-control-section[hidden] { display: none !important; }
+.annotation-control-section label,
+.annotation-small-label {
+  font-size: 12px;
+  color: rgba(255,255,255,.84);
+  font-weight: 600;
+}
+.annotation-control-section output { font-variant-numeric: tabular-nums; color: white; }
+.annotation-control-section input[type="range"] {
+  width: 100%;
+  accent-color: white;
+  cursor: pointer;
+}
+#annotationText, #annotationFont {
+  display: block;
+  width: 100%;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 10px;
+  background: rgba(255,255,255,.12);
+  color: white;
+  outline-offset: 2px;
+  font: 15px Arial, sans-serif;
+  padding: 10px 11px;
+}
+#annotationText { resize: vertical; min-height: 78px; }
+#annotationText::placeholder { color: rgba(255,255,255,.55); }
+#annotationFont option { color: black; background: white; }
+.annotation-align-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+}
+.annotation-align-row button {
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 9px;
+  min-height: 36px;
+  font-size: 21px;
+  color: white;
+  background: rgba(255,255,255,.1);
+  cursor: pointer;
+}
+.annotation-align-row button.selected,
+#annotationEraser.selected {
+  border-color: white;
+  background: rgba(255,255,255,.3);
+}
+.annotation-text-actions,
+.annotation-bottom-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+#annotationFinishDoodle { width: 100%; }
+#annotationEraser { width: 100%; }
+.annotation-control-section .annotation-hint {
+  margin: 3px 0 0;
+  line-height: 1.45;
+}
+#annotationHitLayer {
+  position: fixed;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+}
+.annotation-hotspot {
+  position: absolute;
+  cursor: move;
+  touch-action: none;
+  pointer-events: auto;
+  background: transparent;
+}
+#annotationHitLayer.disabled .annotation-hotspot,
+body.design-mode .annotation-hotspot { pointer-events: none; }
+body.annotation-mode #annotationCanvas { pointer-events: none; }
+body.annotation-mode.annotation-draw-mode #annotationCanvas {
+  pointer-events: auto;
+  touch-action: none;
+  cursor: crosshair;
+}
+#annotationSelection {
+  z-index: 11;
+  border: 1.5px dashed rgba(255,255,255,.95);
+  border-radius: 7px;
+  background: rgba(255,255,255,.035);
+  cursor: move;
+  pointer-events: auto;
+  touch-action: none;
+}
+#annotationSelection[hidden] { display: none !important; }
+#annotationDeleteSelected {
+  position: absolute;
+  right: -14px;
+  top: -14px;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 2px solid rgba(0,0,0,.7);
+  border-radius: 50%;
+  background: #ffffff;
+  color: #242424;
+  font-size: 23px;
+  line-height: 1;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+#annotationResize { right: -14px; bottom: -14px; }
+body.design-mode #annotationHitLayer,
+body.design-mode #annotationSelection { pointer-events: none; }
+@media (max-width: 480px) {
+  #annotationToolbar { max-height: calc(100dvh - 88px); }
+  .annotation-tool-row { gap: 7px; }
+  .annotation-tool { font-size: 14px; }
+}
