@@ -1,8 +1,8 @@
 {
-  "versionCode": 13,
-  "versionName": "1.10.0",
+  "versionCode": 14,
+  "versionName": "1.10.1",
   "minSdk": 26,
   "size": 5850704,
-  "sha256": "46399873101ec04e59260a4635fd18bf62263d31075b859c51979341b60c25b3",
-  "notes": "Mini tools editor with compact pen choices, separate eraser, visual font previews, colour palette, drag and minimise. Auto-updater remains removed."
+  "sha256": "53628241396934bc73613139128f98bab2a3510c7f2822f4a51796a4e41c5333",
+  "notes": "Shorter Mini tools panel, compact Done button and separate circular minimise control. Auto-updater remains removed."
 }
