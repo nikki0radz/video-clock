@@ -1,8 +1,8 @@
 {
-  "versionCode": 10,
-  "versionName": "1.8.0",
+  "versionCode": 11,
+  "versionName": "1.8.1",
   "minSdk": 26,
-  "size": 5854919,
-  "sha256": "53417eba244643cd07a9db5e731809f003c7c356558b13e276bd765da8077859",
-  "notes": "Compact bottom toolbar for text and drawing. Font, size and colour stay within reach; less-used controls live under More. Done saves your work. The previous Play Protect warning remains unresolved."
+  "size": 5846608,
+  "sha256": "2a4466b50c70395b3608b5b2fce3697de0041f81590b7bddcee48f71bf1f2dcb",
+  "notes": "Comparison build: removes the updater and app-installation permission. All other features remain. Future updates use manual downloads. Play Protect clearance is not yet confirmed."
 }
