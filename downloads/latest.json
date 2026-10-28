@@ -1,8 +1,8 @@
 {
-  "versionCode": 9,
-  "versionName": "1.7.0",
+  "versionCode": 10,
+  "versionName": "1.8.0",
   "minSdk": 26,
-  "size": 5850752,
-  "sha256": "99c4bba8ba9f01032bcf04687a7c27da8f7dccd8218fe54bc441a96710ae05da",
-  "notes": "Swipe down on the clock to dim the screen, or up to brighten it. Your app brightness is remembered. Settings and editing gestures stay separate."
+  "size": 5854919,
+  "sha256": "53417eba244643cd07a9db5e731809f003c7c356558b13e276bd765da8077859",
+  "notes": "Compact bottom toolbar for text and drawing. Font, size and colour stay within reach; less-used controls live under More. Done saves your work. The previous Play Protect warning remains unresolved."
 }
