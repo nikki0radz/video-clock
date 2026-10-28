@@ -1,8 +1,8 @@
 {
-  "versionCode": 11,
-  "versionName": "1.8.1",
+  "versionCode": 12,
+  "versionName": "1.9.0",
   "minSdk": 26,
   "size": 5846608,
-  "sha256": "2a4466b50c70395b3608b5b2fce3697de0041f81590b7bddcee48f71bf1f2dcb",
-  "notes": "Comparison build: removes the updater and app-installation permission. All other features remain. Future updates use manual downloads. Play Protect clearance is not yet confirmed."
+  "sha256": "1d823377b456781abb25d6247d5e5e5d754768a856c34fcd7a7d352d923d97f2",
+  "notes": "Compact side panel for text and drawing, with separate Pen and Eraser icon buttons and clear selection. Updater remains removed."
 }
