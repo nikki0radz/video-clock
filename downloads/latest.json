@@ -1,8 +1,8 @@
 {
-  "versionCode": 8,
-  "versionName": "1.6.0",
+  "versionCode": 9,
+  "versionName": "1.7.0",
   "minSdk": 26,
-  "size": 5850686,
-  "sha256": "d90136392bb431d62a073b58c69832aa34a2b88440bf7be1221bcafd3bd71044",
-  "notes": "Check for updates inside the app. Select multiple photos or videos to import together, with progress and a completion summary."
+  "size": 5850752,
+  "sha256": "99c4bba8ba9f01032bcf04687a7c27da8f7dccd8218fe54bc441a96710ae05da",
+  "notes": "Swipe down on the clock to dim the screen, or up to brighten it. Your app brightness is remembered. Settings and editing gestures stay separate."
 }
