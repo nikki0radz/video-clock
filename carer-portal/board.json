@@ -1,1 +1,2242 @@
-{"version":1,"revision":"2026-11-04-1","pages":[{"id":"home","label":"Welcome and actions","group":"Start","options":[{"id":"home-2","label":"Two-column action index","appearance":{"design":{"layout":{"preset":"layout-02","gap":8},"elements":{"home.title":{"font":"Georgia","size":30},"home.eyebrow":{"color":"#b6dace"}}}}},{"id":"home-3","label":"Featured message with paired actions","appearance":{"design":{"layout":{"preset":"layout-03","gap":14},"elements":{"home.card.message":{"preset":"style-10"},"home.card.message.title":{"weight":700},"home.title":{"size":32}}}}}]},{"id":"about:message","label":"Send a message · explanation","group":"Explanations","options":[{"id":"about-message-2","label":"Mint message card","appearance":{"design":{"elements":{"about-message.title":{"preset":"style-04","size":27,"padding":8},"about-message.body":{"size":16},"about-message.continue":{"weight":700}}}}},{"id":"about-message-3","label":"Midnight message","appearance":{"design":{"elements":{"about-message.title":{"font":"Patrick Hand","size":32,"align":"center"},"about-message.eyebrow":{"align":"center","color":"#d2c1e5"},"about-message.continue":{"preset":"style-08","padding":12}}}}}]},{"id":"about:note","label":"Add a note · explanation","group":"Explanations","options":[{"id":"about-note-2","label":"Library note card","appearance":{"design":{"elements":{"about-note.title":{"preset":"style-05","size":27,"padding":8},"about-note.body":{"size":16},"about-note.continue":{"weight":700}}}}},{"id":"about-note-3","label":"Notebook outline","appearance":{"design":{"elements":{"about-note.title":{"font":"Georgia","size":32,"align":"center"},"about-note.eyebrow":{"align":"center","color":"#d2c1e5"},"about-note.continue":{"preset":"style-17","padding":12}}}}}]},{"id":"about:picture","label":"Add a picture · explanation","group":"Explanations","options":[{"id":"about-picture-2","label":"Porcelain photo card","appearance":{"design":{"elements":{"about-picture.title":{"preset":"style-02","size":27,"padding":8},"about-picture.body":{"size":16},"about-picture.continue":{"weight":700}}}}},{"id":"about-picture-3","label":"Dusk photo card","appearance":{"design":{"elements":{"about-picture.title":{"font":"Kalam","size":32,"align":"center"},"about-picture.eyebrow":{"align":"center","color":"#d2c1e5"},"about-picture.continue":{"preset":"style-19","padding":12}}}}}]},{"id":"about:see","label":"See notes · explanation","group":"Explanations","options":[{"id":"about-see-2","label":"Linen reading card","appearance":{"design":{"elements":{"about-see.title":{"preset":"style-18","size":27,"padding":8},"about-see.body":{"size":16},"about-see.continue":{"weight":700}}}}},{"id":"about-see-3","label":"Graph-paper notebook","appearance":{"design":{"elements":{"about-see.title":{"font":"Georgia","size":32,"align":"center"},"about-see.eyebrow":{"align":"center","color":"#d2c1e5"},"about-see.continue":{"preset":"style-11","padding":12}}}}}]},{"id":"about:reminder","label":"Add a reminder · explanation","group":"Explanations","options":[{"id":"about-reminder-2","label":"Lemon reminder","appearance":{"design":{"elements":{"about-reminder.title":{"preset":"style-13","size":27,"padding":8},"about-reminder.body":{"size":16},"about-reminder.continue":{"weight":700}}}}},{"id":"about-reminder-3","label":"Signal reminder","appearance":{"design":{"elements":{"about-reminder.title":{"font":"DynaPuff","size":32,"align":"center"},"about-reminder.eyebrow":{"align":"center","color":"#d2c1e5"},"about-reminder.continue":{"preset":"style-20","padding":12}}}}}]},{"id":"about:event","label":"Add a calendar event · explanation","group":"Explanations","options":[{"id":"about-event-2","label":"Apricot event ticket","appearance":{"design":{"elements":{"about-event.title":{"preset":"style-07","size":27,"padding":8},"about-event.body":{"size":16},"about-event.continue":{"weight":700}}}}},{"id":"about-event-3","label":"Enamel calendar","appearance":{"design":{"elements":{"about-event.title":{"font":"Trebuchet MS","size":32,"align":"center"},"about-event.eyebrow":{"align":"center","color":"#d2c1e5"},"about-event.continue":{"preset":"style-16","padding":12}}}}}]},{"id":"about:postcard","label":"Send a postcard · explanation","group":"Explanations","options":[{"id":"about-postcard-2","label":"Pressed rose postcard","appearance":{"design":{"elements":{"about-postcard.title":{"preset":"style-09","size":27,"padding":8},"about-postcard.body":{"size":16},"about-postcard.continue":{"weight":700}}}}},{"id":"about-postcard-3","label":"Copper postcard","appearance":{"design":{"elements":{"about-postcard.title":{"font":"Patrick Hand","size":32,"align":"center"},"about-postcard.eyebrow":{"align":"center","color":"#d2c1e5"},"about-postcard.continue":{"preset":"style-14","padding":12}}}}}]},{"id":"form:message","label":"Send a message · form","group":"Forms","options":[{"id":"form-message-2","label":"Writing space","appearance":{"design":{"elements":{"form-message.message-input":{"fill":"#242b39","border":"#88a9a2","stroke":2,"padding":15},"form-message.message-label":{"size":16,"weight":700}}}}},{"id":"form-message-3","label":"Signature and send","appearance":{"design":{"elements":{"form-message.from-label":{"weight":700,"color":"#f1c9cc"},"form-message.review":{"preset":"style-15","weight":700}}}}}]},{"id":"form:note","label":"Add a note · form","group":"Forms","options":[{"id":"form-note-2","label":"Journal entry","appearance":{"design":{"elements":{"form-note.message-input":{"font":"Georgia","size":18,"fill":"#282437","padding":16},"form-note.message-label":{"font":"Georgia","weight":700}}}}},{"id":"form-note-3","label":"Highlighted photo attachment","appearance":{"design":{"elements":{"form-note.photo":{"preset":"style-05","weight":700},"form-note.date-label":{"color":"#e8cda6","weight":700},"form-note.time-label":{"color":"#e8cda6","weight":700}}}}}]},{"id":"form:picture","label":"Add a picture · form","group":"Forms","options":[{"id":"form-picture-2","label":"Gallery upload","appearance":{"design":{"elements":{"form-picture.photo":{"preset":"style-16","padding":16,"weight":700},"form-picture.title":{"font":"Georgia","size":30}}}}},{"id":"form-picture-3","label":"Caption card","appearance":{"design":{"elements":{"form-picture.message-input":{"preset":"style-02","font":"Georgia","size":18,"padding":14},"form-picture.review":{"preset":"style-10"}}}}}]},{"id":"form:reminder","label":"Add a reminder · form","group":"Forms","options":[{"id":"form-reminder-2","label":"Appointment planner","appearance":{"design":{"elements":{"form-reminder.date-input":{"fill":"#303047","stroke":2,"border":"#b2a3d8"},"form-reminder.time-input":{"fill":"#303047","stroke":2,"border":"#b2a3d8"},"form-reminder.review":{"preset":"style-08"}}}}},{"id":"form-reminder-3","label":"Reminder wording first","appearance":{"design":{"elements":{"form-reminder.message-label":{"size":18,"weight":700,"color":"#f6dc97"},"form-reminder.message-input":{"size":19,"padding":15},"form-reminder.review":{"preset":"style-13"}}}}}]},{"id":"form:event","label":"Add a calendar event · form","group":"Forms","options":[{"id":"form-event-2","label":"Calendar time blocks","appearance":{"design":{"elements":{"form-event.date-input":{"stroke":2,"border":"#80b5a0","fill":"#20382f"},"form-event.time-input":{"stroke":2,"border":"#80b5a0","fill":"#20382f"},"form-event.review":{"preset":"style-10"}}}}},{"id":"form-event-3","label":"Event invitation","appearance":{"design":{"elements":{"form-event.title":{"font":"Georgia","size":33},"form-event.message-input":{"font":"Georgia","size":18},"form-event.review":{"preset":"style-07"}}}}}]},{"id":"form:postcard","label":"Send a postcard · form","group":"Forms","options":[{"id":"form-postcard-2","label":"Handwritten postcard","appearance":{"design":{"elements":{"form-postcard.message-input":{"font":"Patrick Hand","size":23,"fill":"#f8ecdc","color":"#3c302c"},"form-postcard.from-label":{"font":"Georgia","weight":700}}}}},{"id":"form-postcard-3","label":"Photo-led postcard","appearance":{"design":{"elements":{"form-postcard.photo":{"preset":"style-09","padding":15},"form-postcard.review":{"preset":"style-14","weight":700}}}}}]},{"id":"review:message","label":"Send a message · review","group":"Review before sending","options":[{"id":"review-message-2","label":"Emphasise the summary","appearance":{"design":{"elements":{"review-message.summary":{"fill":"#243830","border":"#8abfa3","stroke":2,"radius":14,"padding":18},"review-message.title":{"font":"Georgia","size":30}}}}},{"id":"review-message-3","label":"Emphasise the send button","appearance":{"design":{"elements":{"review-message.primary":{"preset":"style-08","weight":700,"padding":15},"review-message.secondary-1":{"radius":8,"stroke":1,"border":"#93889e"},"review-message.eyebrow":{"color":"#d4bfdc"}}}}}]},{"id":"review:note","label":"Add a note · review","group":"Review before sending","options":[{"id":"review-note-2","label":"Emphasise the summary","appearance":{"design":{"elements":{"review-note.summary":{"fill":"#243830","border":"#8abfa3","stroke":2,"radius":14,"padding":18},"review-note.title":{"font":"Georgia","size":30}}}}},{"id":"review-note-3","label":"Emphasise the send button","appearance":{"design":{"elements":{"review-note.primary":{"preset":"style-17","weight":700,"padding":15},"review-note.secondary-1":{"radius":8,"stroke":1,"border":"#93889e"},"review-note.eyebrow":{"color":"#d4bfdc"}}}}}]},{"id":"review:picture","label":"Add a picture · review","group":"Review before sending","options":[{"id":"review-picture-2","label":"Emphasise the summary","appearance":{"design":{"elements":{"review-picture.summary":{"fill":"#243830","border":"#8abfa3","stroke":2,"radius":14,"padding":18},"review-picture.title":{"font":"Georgia","size":30}}}}},{"id":"review-picture-3","label":"Emphasise the send button","appearance":{"design":{"elements":{"review-picture.primary":{"preset":"style-19","weight":700,"padding":15},"review-picture.secondary-1":{"radius":8,"stroke":1,"border":"#93889e"},"review-picture.eyebrow":{"color":"#d4bfdc"}}}}}]},{"id":"review:reminder","label":"Add a reminder · review","group":"Review before sending","options":[{"id":"review-reminder-2","label":"Emphasise the summary","appearance":{"design":{"elements":{"review-reminder.summary":{"fill":"#243830","border":"#8abfa3","stroke":2,"radius":14,"padding":18},"review-reminder.title":{"font":"Georgia","size":30}}}}},{"id":"review-reminder-3","label":"Emphasise the send button","appearance":{"design":{"elements":{"review-reminder.primary":{"preset":"style-20","weight":700,"padding":15},"review-reminder.secondary-1":{"radius":8,"stroke":1,"border":"#93889e"},"review-reminder.eyebrow":{"color":"#d4bfdc"}}}}}]},{"id":"review:event","label":"Add a calendar event · review","group":"Review before sending","options":[{"id":"review-event-2","label":"Emphasise the summary","appearance":{"design":{"elements":{"review-event.summary":{"fill":"#243830","border":"#8abfa3","stroke":2,"radius":14,"padding":18},"review-event.title":{"font":"Georgia","size":30}}}}},{"id":"review-event-3","label":"Emphasise the send button","appearance":{"design":{"elements":{"review-event.primary":{"preset":"style-16","weight":700,"padding":15},"review-event.secondary-1":{"radius":8,"stroke":1,"border":"#93889e"},"review-event.eyebrow":{"color":"#d4bfdc"}}}}}]},{"id":"review:postcard","label":"Send a postcard · review","group":"Review before sending","options":[{"id":"review-postcard-2","label":"Emphasise the summary","appearance":{"design":{"elements":{"review-postcard.summary":{"fill":"#243830","border":"#8abfa3","stroke":2,"radius":14,"padding":18},"review-postcard.title":{"font":"Georgia","size":30}}}}},{"id":"review-postcard-3","label":"Emphasise the send button","appearance":{"design":{"elements":{"review-postcard.primary":{"preset":"style-14","weight":700,"padding":15},"review-postcard.secondary-1":{"radius":8,"stroke":1,"border":"#93889e"},"review-postcard.eyebrow":{"color":"#d4bfdc"}}}}}]},{"id":"waiting","label":"Waiting for receipt","group":"Delivery and access","options":[{"id":"waiting-2","label":"Quiet waiting screen","appearance":{"design":{"elements":{"waiting.title":{"preset":"style-10","size":28,"padding":10},"waiting.intro":{"size":17,"color":"#eee2f3"}}}}},{"id":"waiting-3","label":"Large progress heading","appearance":{"design":{"elements":{"waiting.title":{"font":"Georgia","size":34,"weight":700,"align":"center"},"waiting.intro":{"fill":"#282839","color":"#e3e3f7","padding":14,"radius":12,"align":"center"}}}}}]},{"id":"delayed","label":"Delivery taking longer","group":"Delivery and access","options":[{"id":"delayed-2","label":"Reassurance first","appearance":{"design":{"elements":{"delayed.title":{"preset":"style-10","size":28,"padding":10},"delayed.intro":{"size":17,"color":"#eee2f3"}}}}},{"id":"delayed-3","label":"Delivery status panel","appearance":{"design":{"elements":{"delayed.title":{"font":"Georgia","size":34,"weight":700,"align":"center"},"delayed.intro":{"fill":"#282839","color":"#e3e3f7","padding":14,"radius":12,"align":"center"}}}}}]},{"id":"failed","label":"Delivery failed","group":"Delivery and access","options":[{"id":"failed-2","label":"Warm alert heading","appearance":{"design":{"elements":{"failed.title":{"preset":"style-07","size":28,"padding":10},"failed.intro":{"size":17,"color":"#eee2f3"}}}}},{"id":"failed-3","label":"High-contrast problem summary","appearance":{"design":{"elements":{"failed.title":{"font":"Georgia","size":34,"weight":700,"align":"center"},"failed.intro":{"fill":"#392932","color":"#ffe2db","padding":14,"radius":12,"align":"center"}}}}}]},{"id":"received","label":"Received by the clock","group":"Delivery and access","options":[{"id":"received-2","label":"Receipt stamp","appearance":{"design":{"elements":{"received.title":{"preset":"style-10","size":28,"padding":10},"received.intro":{"size":17,"color":"#eee2f3"}}}}},{"id":"received-3","label":"Large confirmation","appearance":{"design":{"elements":{"received.title":{"font":"Georgia","size":34,"weight":700,"align":"center"},"received.intro":{"fill":"#282839","color":"#e3e3f7","padding":14,"radius":12,"align":"center"}}}}}]},{"id":"success","label":"Ready on the clock","group":"Delivery and access","options":[{"id":"success-2","label":"Confirmation stamp","appearance":{"design":{"elements":{"success.title":{"preset":"style-10","size":28,"padding":10},"success.intro":{"size":17,"color":"#eee2f3"}}}}},{"id":"success-3","label":"Thank-you note","appearance":{"design":{"elements":{"success.title":{"font":"Georgia","size":34,"weight":700,"align":"center"},"success.intro":{"fill":"#282839","color":"#e3e3f7","padding":14,"radius":12,"align":"center"}}}}}]},{"id":"exit","label":"Finished · close this tab","group":"Delivery and access","options":[{"id":"exit-2","label":"Quiet farewell","appearance":{"design":{"elements":{"exit.title":{"preset":"style-10","size":28,"padding":10},"exit.intro":{"size":17,"color":"#eee2f3"}}}}},{"id":"exit-3","label":"Framed farewell","appearance":{"design":{"elements":{"exit.title":{"font":"Georgia","size":34,"weight":700,"align":"center"},"exit.intro":{"fill":"#282839","color":"#e3e3f7","padding":14,"radius":12,"align":"center"}}}}}]},{"id":"unlinked","label":"Team link needed","group":"Delivery and access","options":[{"id":"unlinked-2","label":"QR instruction card","appearance":{"design":{"elements":{"unlinked.title":{"preset":"style-10","size":28,"padding":10},"unlinked.intro":{"size":17,"color":"#eee2f3"}}}}},{"id":"unlinked-3","label":"Large scan instruction","appearance":{"design":{"elements":{"unlinked.title":{"font":"Georgia","size":34,"weight":700,"align":"center"},"unlinked.intro":{"fill":"#282839","color":"#e3e3f7","padding":14,"radius":12,"align":"center"}}}}}]},{"id":"unavailable","label":"Clock unavailable","group":"Delivery and access","options":[{"id":"unavailable-2","label":"Connection notice","appearance":{"design":{"elements":{"unavailable.title":{"preset":"style-07","size":28,"padding":10},"unavailable.intro":{"size":17,"color":"#eee2f3"}}}}},{"id":"unavailable-3","label":"Readable retry guidance","appearance":{"design":{"elements":{"unavailable.title":{"font":"Georgia","size":34,"weight":700,"align":"center"},"unavailable.intro":{"fill":"#392932","color":"#ffe2db","padding":14,"radius":12,"align":"center"}}}}}]},{"id":"notebook","label":"Shared notebook · month","group":"Shared notebook","options":[{"id":"notebook-2","label":"Month with a framed title","appearance":{"design":{"elements":{"notebook.title":{"preset":"style-05","size":26,"padding":6},"notebook.calendar":{"radius":12,"stroke":2,"border":"#a79079"}}}}},{"id":"notebook-3","label":"Prominent add-note action","appearance":{"design":{"elements":{"notebook.add":{"preset":"style-04","weight":700},"notebook.diary":{"weight":700},"notebook.header":{"padding":12}}}}}]},{"id":"notebook-week","label":"Shared notebook · week","group":"Shared notebook","options":[{"id":"notebook-week-2","label":"Linen week heading","appearance":{"design":{"elements":{"notebook.title":{"preset":"style-18","size":24,"padding":6},"notebook.back":{"weight":700}}}}},{"id":"notebook-week-3","label":"Enamel week toolbar","appearance":{"design":{"elements":{"notebook.header":{"fill":"#263954","radius":12,"padding":10},"notebook.add":{"preset":"style-16","weight":700}}}}}]},{"id":"notebook-day","label":"Shared notebook · day","group":"Shared notebook","options":[{"id":"notebook-day-2","label":"Reading-day heading","appearance":{"design":{"elements":{"notebook.title":{"font":"Georgia","size":28,"color":"#ffe0bd"},"notebook.header":{"fill":"#362b2c","radius":10,"padding":10}}}}},{"id":"notebook-day-3","label":"Daily action buttons","appearance":{"design":{"elements":{"notebook.add":{"preset":"style-10","weight":700},"notebook.back":{"preset":"style-12"}}}}}]},{"id":"notebook-important","label":"Important notes","group":"Shared notebook","options":[{"id":"notebook-important-2","label":"Highlighted important tab","appearance":{"design":{"elements":{"notebook.important":{"preset":"style-13","weight":700},"notebook.title":{"font":"Georgia","size":26}}}}},{"id":"notebook-important-3","label":"Compact notes toolbar","appearance":{"design":{"elements":{"notebook.tabs":{"fill":"#26343b","padding":5,"radius":8},"notebook.add":{"preset":"style-16"},"notebook.important":{"weight":800}}}}}]},{"id":"notebook-add","label":"New diary note","group":"Notebook dialogs","options":[{"id":"notebook-add-2","label":"Journal heading","appearance":{"design":{"elements":{"notebook-add.title":{"preset":"style-05","size":25,"padding":7}}}}},{"id":"notebook-add-3","label":"Mint save button","appearance":{"design":{"elements":{"notebook-add.title":{"font":"Georgia","size":29},"notebook-add.primary":{"preset":"style-04","weight":700,"padding":12}}}}}]},{"id":"notebook-add-important","label":"New important note","group":"Notebook dialogs","options":[{"id":"notebook-add-important-2","label":"Priority heading","appearance":{"design":{"elements":{"notebook-add-important.title":{"preset":"style-13","size":25,"padding":7}}}}},{"id":"notebook-add-important-3","label":"Signal save button","appearance":{"design":{"elements":{"notebook-add-important.title":{"font":"Trebuchet MS","size":29},"notebook-add-important.primary":{"preset":"style-20","weight":700,"padding":12}}}}}]},{"id":"notebook-edit","label":"Edit a notebook note","group":"Notebook dialogs","options":[{"id":"notebook-edit-2","label":"Revision heading","appearance":{"design":{"elements":{"notebook-edit.title":{"preset":"style-17","size":25,"padding":7}}}}},{"id":"notebook-edit-3","label":"Copper save button","appearance":{"design":{"elements":{"notebook-edit.title":{"font":"Patrick Hand","size":29},"notebook-edit.primary":{"preset":"style-14","weight":700,"padding":12}}}}}]},{"id":"notebook-history","label":"Note history","group":"Notebook dialogs","options":[{"id":"notebook-history-2","label":"Archive heading","appearance":{"design":{"elements":{"notebook-history.title":{"preset":"style-18","size":25,"padding":7}}}}},{"id":"notebook-history-3","label":"Enamel history action","appearance":{"design":{"elements":{"notebook-history.title":{"font":"Georgia","size":29},"notebook-history.primary":{"preset":"style-16","weight":700,"padding":12}}}}}]},{"id":"notebook-welcome","label":"Notebook welcome","group":"Notebook dialogs","options":[{"id":"notebook-welcome-2","label":"Reading-room title","appearance":{"design":{"elements":{"notebook-welcome.title":{"preset":"style-02","size":25,"padding":7}}}}},{"id":"notebook-welcome-3","label":"Forest entrance button","appearance":{"design":{"elements":{"notebook-welcome.title":{"font":"Georgia","size":29},"notebook-welcome.primary":{"preset":"style-10","weight":700,"padding":12}}}}}]},{"id":"notebook-saved","label":"Notebook save confirmation","group":"Notebook dialogs","options":[{"id":"notebook-saved-2","label":"Rose confirmation","appearance":{"design":{"elements":{"notebook-saved.title":{"preset":"style-09","size":25,"padding":7}}}}},{"id":"notebook-saved-3","label":"Mint confirmation action","appearance":{"design":{"elements":{"notebook-saved.title":{"font":"Patrick Hand","size":29},"notebook-saved.primary":{"preset":"style-04","weight":700,"padding":12}}}}}]},{"id":"notebook-shortcut","label":"Notebook shortcut","group":"Notebook dialogs","options":[{"id":"notebook-shortcut-2","label":"Quick-access heading","appearance":{"design":{"elements":{"notebook-shortcut.title":{"preset":"style-11","size":25,"padding":7}}}}},{"id":"notebook-shortcut-3","label":"Clear shortcut action","appearance":{"design":{"elements":{"notebook-shortcut.title":{"font":"Trebuchet MS","size":29},"notebook-shortcut.primary":{"preset":"style-08","weight":700,"padding":12}}}}}]},{"id":"photo-frame","label":"Frame a photo","group":"Photo tools","options":[{"id":"photo-frame-2","label":"Gallery heading","appearance":{"design":{"elements":{"photo-frame.title":{"preset":"style-02","size":25,"padding":7}}}}},{"id":"photo-frame-3","label":"Enamel framing button","appearance":{"design":{"elements":{"photo-frame.title":{"font":"Georgia","size":29},"photo-frame.primary":{"preset":"style-16","weight":700,"padding":12}}}}}]}]}
+{
+  "version": 1,
+  "revision": "2026-11-04-five-designs",
+  "pages": [
+    {
+      "id": "home",
+      "label": "Welcome and actions",
+      "group": "Start",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "home": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "home": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "home": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "home": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "home": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "about:message",
+      "label": "Send a message · choose a template",
+      "group": "Template choices",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "about:message": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "about:message": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "about:message": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "about:message": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "about:message": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "about:note",
+      "label": "Add a note · choose a template",
+      "group": "Template choices",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "about:note": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "about:note": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "about:note": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "about:note": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "about:note": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "about:picture",
+      "label": "Add a picture · choose a template",
+      "group": "Template choices",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "about:picture": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "about:picture": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "about:picture": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "about:picture": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "about:picture": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "about:reminder",
+      "label": "Add a reminder · choose a template",
+      "group": "Template choices",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "about:reminder": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "about:reminder": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "about:reminder": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "about:reminder": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "about:reminder": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "about:event",
+      "label": "Add a calendar event · choose a template",
+      "group": "Template choices",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "about:event": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "about:event": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "about:event": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "about:event": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "about:event": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "about:postcard",
+      "label": "Send a postcard · choose a template",
+      "group": "Template choices",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "about:postcard": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "about:postcard": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "about:postcard": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "about:postcard": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "about:postcard": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "about:sticker",
+      "label": "Send a sticker · choose a template",
+      "group": "Template choices",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "about:sticker": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "about:sticker": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "about:sticker": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "about:sticker": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "about:sticker": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "form:message",
+      "label": "Send a message · live preview and input",
+      "group": "Live previews",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "form:message": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "form:message": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "form:message": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "form:message": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "form:message": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "form:note",
+      "label": "Add a note · live preview and input",
+      "group": "Live previews",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "form:note": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "form:note": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "form:note": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "form:note": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "form:note": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "form:picture",
+      "label": "Add a picture · live preview and input",
+      "group": "Live previews",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "form:picture": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "form:picture": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "form:picture": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "form:picture": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "form:picture": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "form:reminder",
+      "label": "Add a reminder · live preview and input",
+      "group": "Live previews",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "form:reminder": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "form:reminder": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "form:reminder": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "form:reminder": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "form:reminder": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "form:event",
+      "label": "Add a calendar event · live preview and input",
+      "group": "Live previews",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "form:event": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "form:event": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "form:event": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "form:event": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "form:event": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "form:postcard",
+      "label": "Send a postcard · live preview and input",
+      "group": "Live previews",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "form:postcard": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "form:postcard": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "form:postcard": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "form:postcard": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "form:postcard": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "form:sticker",
+      "label": "Send a sticker · live preview and input",
+      "group": "Live previews",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "form:sticker": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "form:sticker": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "form:sticker": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "form:sticker": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "form:sticker": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "review:message",
+      "label": "Send a message · filled preview",
+      "group": "Filled previews",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "review:message": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "review:message": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "review:message": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "review:message": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "review:message": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "review:note",
+      "label": "Add a note · filled preview",
+      "group": "Filled previews",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "review:note": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "review:note": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "review:note": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "review:note": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "review:note": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "review:picture",
+      "label": "Add a picture · filled preview",
+      "group": "Filled previews",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "review:picture": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "review:picture": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "review:picture": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "review:picture": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "review:picture": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "review:reminder",
+      "label": "Add a reminder · filled preview",
+      "group": "Filled previews",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "review:reminder": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "review:reminder": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "review:reminder": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "review:reminder": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "review:reminder": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "review:event",
+      "label": "Add a calendar event · filled preview",
+      "group": "Filled previews",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "review:event": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "review:event": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "review:event": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "review:event": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "review:event": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "review:postcard",
+      "label": "Send a postcard · filled preview",
+      "group": "Filled previews",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "review:postcard": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "review:postcard": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "review:postcard": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "review:postcard": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "review:postcard": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "review:sticker",
+      "label": "Send a sticker · filled preview",
+      "group": "Filled previews",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "review:sticker": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "review:sticker": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "review:sticker": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "review:sticker": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "review:sticker": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "waiting",
+      "label": "Waiting for receipt",
+      "group": "Delivery and access",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "waiting": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "waiting": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "waiting": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "waiting": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "waiting": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "delayed",
+      "label": "Delivery taking longer",
+      "group": "Delivery and access",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "delayed": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "delayed": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "delayed": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "delayed": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "delayed": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "failed",
+      "label": "Delivery failed",
+      "group": "Delivery and access",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "failed": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "failed": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "failed": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "failed": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "failed": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "received",
+      "label": "Received by the clock",
+      "group": "Delivery and access",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "received": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "received": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "received": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "received": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "received": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "success",
+      "label": "Ready on the clock",
+      "group": "Delivery and access",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "success": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "success": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "success": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "success": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "success": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "exit",
+      "label": "Finished · close this tab",
+      "group": "Delivery and access",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "exit": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "exit": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "exit": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "exit": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "exit": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "unlinked",
+      "label": "Team link needed",
+      "group": "Delivery and access",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "unlinked": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "unlinked": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "unlinked": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "unlinked": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "unlinked": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "unavailable",
+      "label": "Clock unavailable",
+      "group": "Delivery and access",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "unavailable": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "unavailable": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "unavailable": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "unavailable": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "unavailable": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "notebook",
+      "label": "Shared notebook · month",
+      "group": "Shared notebook",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "notebook": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "notebook": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "notebook": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "notebook": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "notebook": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "notebook-notes",
+      "label": "View notes · today",
+      "group": "Shared notebook",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "notebook-notes": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "notebook-notes": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "notebook-notes": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "notebook-notes": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "notebook-notes": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "notebook-week",
+      "label": "Shared notebook · week",
+      "group": "Shared notebook",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "notebook-week": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "notebook-week": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "notebook-week": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "notebook-week": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "notebook-week": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "notebook-day",
+      "label": "Shared notebook · day",
+      "group": "Shared notebook",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "notebook-day": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "notebook-day": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "notebook-day": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "notebook-day": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "notebook-day": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "notebook-important",
+      "label": "Important notes",
+      "group": "Shared notebook",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "notebook-important": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "notebook-important": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "notebook-important": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "notebook-important": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "notebook-important": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "notebook-add",
+      "label": "New diary note",
+      "group": "Notebook dialogs",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "notebook-add": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "notebook-add": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "notebook-add": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "notebook-add": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "notebook-add": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "notebook-add-important",
+      "label": "New important note",
+      "group": "Notebook dialogs",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "notebook-add-important": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "notebook-add-important": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "notebook-add-important": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "notebook-add-important": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "notebook-add-important": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "notebook-edit",
+      "label": "Edit a notebook note",
+      "group": "Notebook dialogs",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "notebook-edit": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "notebook-edit": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "notebook-edit": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "notebook-edit": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "notebook-edit": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "notebook-history",
+      "label": "Note history",
+      "group": "Notebook dialogs",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "notebook-history": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "notebook-history": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "notebook-history": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "notebook-history": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "notebook-history": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "notebook-welcome",
+      "label": "Notebook welcome",
+      "group": "Notebook dialogs",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "notebook-welcome": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "notebook-welcome": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "notebook-welcome": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "notebook-welcome": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "notebook-welcome": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "notebook-saved",
+      "label": "Notebook save confirmation",
+      "group": "Notebook dialogs",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "notebook-saved": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "notebook-saved": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "notebook-saved": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "notebook-saved": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "notebook-saved": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "notebook-shortcut",
+      "label": "Notebook shortcut",
+      "group": "Notebook dialogs",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "notebook-shortcut": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "notebook-shortcut": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "notebook-shortcut": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "notebook-shortcut": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "notebook-shortcut": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "photo-frame",
+      "label": "Frame a photo",
+      "group": "Photo tools",
+      "options": [
+        {
+          "id": "look-1",
+          "label": "Guild Hall",
+          "appearance": {
+            "directions": {
+              "photo-frame": 1
+            }
+          }
+        },
+        {
+          "id": "look-2",
+          "label": "Field Journal",
+          "appearance": {
+            "directions": {
+              "photo-frame": 2
+            }
+          }
+        },
+        {
+          "id": "look-3",
+          "label": "Constellation",
+          "appearance": {
+            "directions": {
+              "photo-frame": 3
+            }
+          }
+        },
+        {
+          "id": "look-4",
+          "label": "Gallery",
+          "appearance": {
+            "directions": {
+              "photo-frame": 4
+            }
+          }
+        },
+        {
+          "id": "look-5",
+          "label": "Command Deck",
+          "appearance": {
+            "directions": {
+              "photo-frame": 5
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

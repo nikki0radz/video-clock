@@ -1,10 +1,18 @@
 # Carer Portal design board
 
-[Open the interactive studio](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html)
+[Open the phone sample](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/notes?designPreview=1) · [Open the design studio](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html)
 
-The board groups 40 full-page previews by task. Open a page below to compare your current draft with two suggested designs. You can click through an option at multiple phone sizes. Applying changes to the team QR portal requires a linked clock’s management settings.
+The board covers 43 pages and preview states. Open the existing team QR link to use the live portal. The public phone sample has a page selector and simulates deliveries.
 
-The studio reads [board.json](board.json) from this folder on refresh. Option 1 is your working draft. Choose **Use in draft** to adopt a numbered alternative.
+Each page has the same five numbered looks. Choose a number to compare it, or choose **Draft** in the studio to see your saved changes. **Use in draft** applies a look to that page. The linked clock’s management settings let you publish the draft.
+
+| Number | Design |
+| --- | --- |
+| 1 | Guild Hall |
+| 2 | Field Journal |
+| 3 | Constellation |
+| 4 | Gallery |
+| 5 | Command Deck |
 
 ## Pages
 
@@ -12,33 +20,35 @@ The studio reads [board.json](board.json) from this folder on refresh. Option 1 
 
 - [Welcome and actions](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=home)
 
-**Explanations**
+**Template choices**
 
-- [Send a message · explanation](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=about%3Amessage)
-- [Add a note · explanation](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=about%3Anote)
-- [Add a picture · explanation](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=about%3Apicture)
-- [See notes · explanation](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=about%3Asee)
-- [Add a reminder · explanation](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=about%3Areminder)
-- [Add a calendar event · explanation](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=about%3Aevent)
-- [Send a postcard · explanation](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=about%3Apostcard)
+- [Send a message · choose a template](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=about%3Amessage)
+- [Add a note · choose a template](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=about%3Anote)
+- [Add a picture · choose a template](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=about%3Apicture)
+- [Add a reminder · choose a template](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=about%3Areminder)
+- [Add a calendar event · choose a template](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=about%3Aevent)
+- [Send a postcard · choose a template](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=about%3Apostcard)
+- [Send a sticker · choose a template](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=about%3Asticker)
 
-**Forms**
+**Live previews**
 
-- [Send a message · form](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=form%3Amessage)
-- [Add a note · form](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=form%3Anote)
-- [Add a picture · form](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=form%3Apicture)
-- [Add a reminder · form](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=form%3Areminder)
-- [Add a calendar event · form](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=form%3Aevent)
-- [Send a postcard · form](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=form%3Apostcard)
+- [Send a message · live preview and input](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=form%3Amessage)
+- [Add a note · live preview and input](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=form%3Anote)
+- [Add a picture · live preview and input](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=form%3Apicture)
+- [Add a reminder · live preview and input](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=form%3Areminder)
+- [Add a calendar event · live preview and input](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=form%3Aevent)
+- [Send a postcard · live preview and input](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=form%3Apostcard)
+- [Send a sticker · live preview and input](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=form%3Asticker)
 
-**Review before sending**
+**Filled previews**
 
-- [Send a message · review](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=review%3Amessage)
-- [Add a note · review](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=review%3Anote)
-- [Add a picture · review](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=review%3Apicture)
-- [Add a reminder · review](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=review%3Areminder)
-- [Add a calendar event · review](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=review%3Aevent)
-- [Send a postcard · review](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=review%3Apostcard)
+- [Send a message · filled preview](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=review%3Amessage)
+- [Add a note · filled preview](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=review%3Anote)
+- [Add a picture · filled preview](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=review%3Apicture)
+- [Add a reminder · filled preview](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=review%3Areminder)
+- [Add a calendar event · filled preview](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=review%3Aevent)
+- [Send a postcard · filled preview](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=review%3Apostcard)
+- [Send a sticker · filled preview](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=review%3Asticker)
 
 **Delivery and access**
 
@@ -54,6 +64,7 @@ The studio reads [board.json](board.json) from this folder on refresh. Option 1 
 **Shared notebook**
 
 - [Shared notebook · month](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=notebook)
+- [View notes · today](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=notebook-notes)
 - [Shared notebook · week](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=notebook-week)
 - [Shared notebook · day](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=notebook-day)
 - [Important notes](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=notebook-important)
@@ -72,24 +83,6 @@ The studio reads [board.json](board.json) from this folder on refresh. Option 1 
 
 - [Frame a photo](https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/carer-studio.html?page=photo-frame)
 
-## Adding design options
+## Updating options
 
-The catalogue format is version 1. The current revision is `2026-11-04-1`. Each page has a stable ID, a label, a group and an ordered array of suggested options. The studio supplies the current draft as option 1. The array starts with option 2.
-
-To add an option, keep the existing page ID and append a new object with a unique ID, a short label and an `appearance` patch. Set only the values that change. Use the element IDs from the studio export and the existing PortalTheme fields. For example, the message explanation is `about:message`, and its title is `about-message.title`.
-
-```json
-{
-  "id": "about-message-editorial",
-  "label": "Editorial message heading",
-  "appearance": {
-    "design": {
-      "elements": {
-        "about-message.title": { "font": "Georgia", "size": 30, "weight": 700 }
-      }
-    }
-  }
-}
-```
-
-Increment the catalogue revision for each change. The page link remains stable when the options change. Keep examples free of clock credentials, team QR fragments, care records and personal photos.
+Each page has a stable ID, a label, a group and an ordered array of options. Each numbered look carries a per-page appearance setting, such as `{"directions":{"about:message":3}}`. Individual element adjustments can use the element IDs in a studio comments export. Increment the revision when the catalogue changes. Keep credentials, care records and personal photos out of examples.
