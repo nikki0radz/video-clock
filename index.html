@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><base href="https://video-clock-ipad-nicole.nikki0radz.chatgpt.site/"><script>window.ClockServiceOrigin="https://video-clock-ipad-nicole.nikki0radz.chatgpt.site";(()=>{const original=window.fetch.bind(window);window.fetch=(input,options)=>{if(typeof input==='string'){const u=new URL(input,document.baseURI);if(u.origin===location.origin&&u.pathname.startsWith('/api/'))input=window.ClockServiceOrigin+u.pathname+u.search;}return original(input,options);};})();</script>
 
     <meta charset="UTF-8">
 
@@ -13,14 +13,15 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <title>Video Clock</title>
+    <title>Jonathan’s Clock · GitHub test</title>
     <link rel="stylesheet" href="annotations.css">
     <link rel="stylesheet" href="colour-wheel.css">
+    <link rel="stylesheet" href="backgrounds.css">
 
 
     <style>
 
-        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&family=Cutive+Mono&family=Great+Vibes&display=swap');
+        @import url('fonts/fonts.css');
 
 
         * {
@@ -378,6 +379,8 @@
 
         #dateWidget {
 
+            width: max-content;
+            text-align: center;
             position: fixed;
 
             left: 50%;
@@ -946,7 +949,19 @@
 
     </style>
 
-</head>
+    <link rel="stylesheet" href="interface.css">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="theme-color" content="#142137">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Video Clock">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="calendar.css">
+<link rel="stylesheet" href="message-preview.css">
+<link rel="stylesheet" href="linked-clocks.css"><link rel="stylesheet" href="daily-notes.css"><link rel="stylesheet" href="note-stickers.css"><link rel="stylesheet" href="note-photos.css">
+<link rel="stylesheet" href="bound-diary.css"><link rel="stylesheet" href="pocket-notes.css">
+<link rel="stylesheet" href="layout-polish.css">
+<link rel="stylesheet" href="dashboard.css"><link rel="stylesheet" href="floating-designer.css"><link rel="stylesheet" href="settings-preview.css"><link rel="stylesheet" href="photo-frame.css"><link rel="stylesheet" href="screen-cards.css"><link rel="stylesheet" href="bottom-notifications.css"><link rel="stylesheet" href="soft-pill-updates.css"><link rel="stylesheet" href="notice-areas.css"><link rel="stylesheet" href="web-hanging.css"><script src="clock-chosen-layout.js"></script><link rel="stylesheet" href="notebook-paper.css"><link rel="stylesheet" href="portal-writing.css"><link rel="stylesheet" href="/portal-loader.css"><script src="/portal-loader.js"></script><link rel="stylesheet" href="clock-mail.css"></head>
 
 
 
@@ -959,13 +974,16 @@
 
         id="videoFrame"
 
-        src="https://www.youtube.com/embed/5qap5aO4i9A?autoplay=1&mute=1&controls=0&loop=1&playlist=5qap5aO4i9A&modestbranding=1&rel=0"
+        title="YouTube background"
+        referrerpolicy="strict-origin-when-cross-origin"
 
         allow="autoplay; encrypted-media"
 
     ></iframe>
 
 
+    <img id="presetBackground" alt="" src="backgrounds/space.jpg">
+    <video id="localBackground" loop muted playsinline preload="auto" hidden></video>
     <div id="shade"></div>
 
 
@@ -1090,6 +1108,25 @@
 
 
     <div id="settingsPanel">
+        <div class="panelHeading"><span>Make it yours</span><span class="panelEyebrow">DISPLAY</span></div>
+        <div class="layoutActions"><button id="designButton" class="settingsAction" type="button">Move &amp; resize</button><button id="resetLayoutButton" class="settingsAction" type="button" aria-label="Reset layout">Reset</button></div>
+        <div class="settingsTitle">Background</div>
+        <div class="choiceRow" id="backgroundModes" role="group" aria-label="Background source">
+          <button class="choiceButton" data-mode="preset">Images</button>
+          <button class="choiceButton" data-mode="local">My videos</button>
+          <button class="choiceButton" data-mode="youtube">YouTube</button>
+        </div>
+        <div id="presetControls"><div id="presetGrid"></div><button id="importImage" class="galleryUpload" type="button" hidden>+ Upload images</button><input id="imageFile" type="file" multiple accept="image/jpeg,image/png,image/webp,image/gif" hidden><button id="expandPresets" type="button" aria-expanded="false" aria-controls="presetGrid">See all images ⌄</button></div>
+        <div id="localControls" hidden>
+          <input type="file" id="videoFile" multiple accept="video/*" hidden>
+          <p class="backgroundHelp">Tap to play · Hold a video to delete</p>
+          <div id="videoLibrary" aria-label="Saved videos"></div>
+          <button id="importVideo" class="galleryUpload" type="button" hidden>+ Upload videos</button>
+          <button id="expandVideos" type="button" aria-expanded="false" aria-controls="videoLibrary">See all videos ⌄</button>
+          <button id="videoSound" class="choiceButton" type="button" role="switch" aria-checked="false" aria-label="Video sound">Video sound: Off (muted)</button>
+        </div>
+        <p id="backgroundStatus" class="backgroundHelp" role="status" aria-live="polite"></p>
+        <div id="youtubeControls">
 
 
         <input
@@ -1114,29 +1151,22 @@
 
 
 
+        </div>
+        <div class="backgroundDimControl">
+          <label for="backgroundDim">Background dimming <output id="backgroundDimValue" for="backgroundDim">8%</output></label>
+          <input id="backgroundDim" type="range" min="0" max="100" step="1" value="8" aria-describedby="backgroundDimHint">
+          <div id="backgroundDimHint" class="backgroundHelp">Darken the background while keeping the clock and text bright.</div>
+        </div>
+        <div class="settingsDivider"></div>
+        <div class="settingsTitle">Clock face</div>
+        <div id="clockFaces" role="group" aria-label="Clock face"></div>
         <div class="settingsDivider"></div>
 
 
-        <button
-            id="designButton"
-            class="settingsAction"
-            type="button"
-        >
-            ✦ Design layout
-        </button>
-
-
-        <button
-            id="resetLayoutButton"
-            class="settingsAction"
-            type="button"
-        >
-            Reset layout
-        </button>
 
 
 
-        <div class="settingsDivider"></div>
+
 
 
         <div class="settingsTitle">
@@ -1220,6 +1250,8 @@
             >
                 Calligraphy
             </button>
+            <button class="choiceButton clockFontButton font-gothic" data-font="gothic" type="button">Gothic</button>
+            <button class="choiceButton clockFontButton font-bubbly" data-font="bubbly" type="button">Bubbly</button>
 
         </div>
 
@@ -1266,12 +1298,25 @@
             >
                 Calligraphy
             </button>
+            <button class="choiceButton dateFontButton font-gothic" data-font="gothic" type="button">Gothic</button>
+            <button class="choiceButton dateFontButton font-bubbly" data-font="bubbly" type="button">Bubbly</button>
 
         </div>
 
     </div>
 
 
+
+    <div id="importOverlay" role="dialog" aria-modal="true" aria-labelledby="importTitle" tabindex="-1" hidden>
+      <div class="importCard">
+        <div id="importSymbol" aria-hidden="true">↑</div>
+        <h2 id="importTitle">Uploading video…</h2>
+        <p id="importMessage" role="status" aria-live="polite">Saving on this tablet. Please keep the app open.</p>
+        <progress id="importProgressBar" max="100" aria-label="Video import progress"></progress>
+        <div id="importPercent"></div>
+        <button id="importDone" class="settingsAction" hidden>Done</button>
+      </div>
+    </div>
 
     <script>
 
@@ -1315,6 +1360,11 @@
 
 
 
+        function paintClockDigit(id, value) {
+            if (window.renderClockDigit) window.renderClockDigit(id, value);
+            else document.getElementById(id).textContent = value;
+        }
+
         function updateClock() {
 
             const now =
@@ -1323,7 +1373,7 @@
 
             const hours =
                 String(
-                    now.getHours()
+                    (localStorage.getItem('clockTimeFormat')==='12'?(now.getHours()%12||12):now.getHours())
                 ).padStart(
                     2,
                     "0"
@@ -1348,28 +1398,17 @@
                 );
 
 
-            document
-                .getElementById("h1")
-                .textContent =
-                hours[0];
+            const ampm=document.getElementById('clockAmPm');if(ampm){ampm.hidden=localStorage.getItem('clockTimeFormat')!=='12';ampm.textContent=now.getHours()<12?'AM':'PM';}
+            paintClockDigit("h1", hours[0]);
 
 
-            document
-                .getElementById("h2")
-                .textContent =
-                hours[1];
+            paintClockDigit("h2", hours[1]);
 
 
-            document
-                .getElementById("m1")
-                .textContent =
-                minutes[0];
+            paintClockDigit("m1", minutes[0]);
 
 
-            document
-                .getElementById("m2")
-                .textContent =
-                minutes[1];
+            paintClockDigit("m2", minutes[1]);
 
 
             document
@@ -1568,6 +1607,8 @@
 
 
         function loadVideo(videoId) {
+            if(window.clockYouTube)return window.clockYouTube.play(videoId);
+            if (window.clockBackground) window.clockBackground.youtube();
 
             document
                 .getElementById(
@@ -2448,7 +2489,9 @@
                 '"Caveat", cursive',
 
             calligraphy:
-                '"Great Vibes", cursive'
+                '"Great Vibes", cursive',
+            gothic: '"UnifrakturCook", serif',
+            bubbly: '"DynaPuff", cursive'
 
         };
 
@@ -2469,6 +2512,7 @@
 
             selectedClockFont =
                 name;
+            root.style.setProperty("--clock-weight", ["gothic", "bubbly"].includes(name) ? "700" : "200");
 
 
             root.style.setProperty(
@@ -2510,6 +2554,7 @@
 
             selectedDateFont =
                 name;
+            root.style.setProperty("--date-weight", ["gothic", "bubbly"].includes(name) ? "700" : "400");
 
 
             root.style.setProperty(
@@ -2790,23 +2835,44 @@
 
         loadSettings();
 
-        // Restore the last video rather than reverting to the default.
-        try {
-            const lastVideoLink = localStorage.getItem("videoClockLastVideo");
-            const lastVideoId = lastVideoLink && getYouTubeId(lastVideoLink);
-            if (lastVideoId) {
-                youtubeInput.value = lastVideoLink;
-                loadVideo(lastVideoId);
-            }
-        } catch (error) {
-            console.warn("The last video could not be restored.", error);
-        }
+        const lastVideoLink = localStorage.getItem("videoClockLastVideo");
+        if (lastVideoLink) youtubeInput.value = lastVideoLink;
 
     </script>
+    <script src="video-playlist-model.js"></script>
+<script src="youtube-library.js"></script>
+<script src="backgrounds.js"></script>
     <script src="annotations.js"></script>
     <script src="colour-wheel.js"></script>
+    <script src="annotation-dock.js"></script>
+    <script src="interface.js"></script>
+    <script src="photo-frame.js"></script><script src="images.js"></script>
+    <script src="brightness.js"></script>
 
 
-</body>
+<script src="web-app.js"></script>
+<script src="care-templates.js"></script><script src="calendar-model.js"></script>
+<script src="reminder-design.js"></script>
+<script src="rota-view-model.js"></script><script src="clock-carer-rota.js"></script><script src="edge-motion.js"></script><script src="calendar.js"></script>
+<script src="date-sheets.js"></script>
+<link rel="stylesheet" href="duty-board.css"><script src="duty-board.js"></script><script src="sheet-display.js"></script>
+<script src="android-reminders.js"></script>
+<script src="message-preview.js"></script>
+<script src="time-wheel.js"></script>
+<script src="sync-schema.js"></script>
+<script src="media-catalogue.js"></script><script src="remote-clock.js"></script>
+<script src="viewport-fit.js"></script>
+<script src="layout-snap.js"></script>
+<script src="battery.js"></script>
+<script src="overlay.js"></script>
+<script src="notes-qr.js"></script><script src="portal-model.js"></script><script src="note-stickers.js"></script><script src="note-photos.js"></script><script src="notebook-timeline.js"></script><script src="notebook-paper.js"></script><script src="daily-notes.js"></script><script src="layout-editor.js"></script>
+<script src="display-options.js"></script>
+<script src="carer-inbox.js"></script><script src="notice-model.js"></script><script src="notice-areas.js"></script><script src="remote-frame.js"></script>
+<script src="floating-designer.js"></script><script src="settings-organizer.js"></script>
+<script src="inline-colours.js"></script>
+<script src="linked-clocks.js"></script>
+<script src="portal-launch.js"></script><script src="bound-diary.js"></script><script src="gentle-icons.js"></script>
+<script src="ical.min.js"></script><script src="google-calendar-model.js"></script><script src="google-calendar.js"></script>
+<script src="notebook-date-picker.js"></script><script src="diary-design.js"></script><script src="dashboard-model.js"></script><script src="dashboard.js"></script><script src="screen-cards-model.js"></script><script src="media-geometry.js"></script><script src="media-composition.js"></script><script src="screen-cards.js"></script><script src="quiet-controls.js"></script><script src="notebook-space.js"></script><script src="design-updates.js"></script><script src="app-updates.js"></script><script src="settings-preview.js"></script><style>.sc-custom-weather-icon{width:64px;height:64px;max-width:100%;object-fit:contain}.clock-weather-title[hidden]{display:none!important}</style><script src="web-layout-test.js"></script><script src="sticker-library.js"></script><script src="clock-mail.js"></script></body>
 
 </html>
